@@ -19,13 +19,19 @@ class Student: Object, Codable, NSCopying {
         return copy
     }
     
-    
     @objc dynamic var id = 0
     @objc dynamic var name = ""
     @objc dynamic var age = 11
     
     override static func primaryKey() -> String? {
         return "id"
+    }
+    
+    convenience init(name: String, age: Int) {
+        self.init()
+        self.id = 0
+        self.name = name
+        self.age = age
     }
 }
 
@@ -252,7 +258,7 @@ class ViewController: UIViewController {
         
         do {
             let manager = RealmManger<Student> ()
-            
+            //1.read
             let result = manager.findFirst()
             
             guard let student = result else {
@@ -260,16 +266,23 @@ class ViewController: UIViewController {
                 throw NSError(domain: "errorメッセージ", code: -1, userInfo: nil)
             }
             
-            print("update => findFirst before:" + student.description  )
+            print("1.read => findFirst before:" + student.description  )
             
-            let updateStudent = student.copy() as! Student
-            updateStudent.age = 19
+            //let updateStudent = student.copy() as! Student
+            //2.update
+            let realm = try! Realm()
+            try realm.write {
+                student.age = 19
+            }
+            print("2.update => findFirst after1:" + student.description  )
             
-            // Update
+            //3.Update
+            let  updateStudent = Student(name: "test", age: 20)
+            
             try manager.update(obj: updateStudent) {
-                let student = manager.findFirst()
-                
-                print("update => findFirst after:" + (student?.description ?? "none") )
+                let student2 = manager.findFirst()
+                print("3.update => findFirst student2:" + (student2?.description ?? "none") )
+                print("3.update => findFirst updateStudent:" + updateStudent.description  )
             }
             
         }  catch let error as NSError {

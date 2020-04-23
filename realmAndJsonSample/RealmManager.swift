@@ -125,4 +125,8 @@ class RealmManger <T: RealmSwift.Object> {
         
     }
     
+    func getRealm() -> Realm {
+        return realm
+    }
+    
 }
