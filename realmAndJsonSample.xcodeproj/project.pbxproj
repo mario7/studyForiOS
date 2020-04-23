@@ -494,6 +494,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = realmAndJsonSample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				JSON_CONFIG = user_configure_dev.json;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -521,6 +522,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = realmAndJsonSample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				JSON_CONFIG = user_configure.json;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -694,6 +696,7 @@
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = "STAGING=1";
 				INFOPLIST_FILE = realmAndJsonSample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				JSON_CONFIG = user_configure_stg.json;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

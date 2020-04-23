@@ -48,11 +48,11 @@ class StudentDetail: Object, Codable {
         
         id = try container.decode(Int.self, forKey: .id)
         name = try container.decode(String.self, forKey: .name)
-         
+        
         //birthday = try container.decode(Int.self, forKey: .birthday)
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-//        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss:ssZZZZ"
+        //        let dateFormatter = DateFormatter()
+        //        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        //        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss:ssZZZZ"
         let birthdayStr = try container.decode(String.self, forKey: .birthday)
         birthday = getDateFormatter().date(from: birthdayStr)
         
@@ -65,8 +65,8 @@ class StudentDetail: Object, Codable {
         var container = encoder.container(keyedBy : CodingKeys.self)
         try container.encode(id, forKey: .id)
         try container.encode(name, forKey: .name)
-    
-    
+        
+        
         //        let dateFormatter = DateFormatter()
         //        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         //        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss:ssZZZZ"
@@ -90,18 +90,38 @@ class StudentDetail: Object, Codable {
 }
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var testLabel: UILabel!
+    
+    let dataStudentStr = """
+    {
+    "name": "jane",
+    "age": 12,
+    "id": 0
+    }
+    """
+    
+    let dataStudentDetailStr = """
+    {
+    "name": "jane",
+    "age": 12,
+    "song": "",
+    "date": "2020-04-01 12:23:59",
+    "id": 1
+    }
+    """
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        insertRealmFromStudentJson()
-        loadRealmFromStudentJson()
+        insertRealmMangerForSudent()
         
-        insertRealmFromStudentDetailJson()
-        loadRealmFromStudentDetailJson()
+//        insertRealmFromStudentJson()
+//        loadRealmFromStudentJson()
+//
+//        insertRealmFromStudentDetailJson()
+//        loadRealmFromStudentDetailJson()
     }
     
     func checkScheme () {
@@ -121,18 +141,11 @@ class ViewController: UIViewController {
     
     func insertRealmFromStudentJson() {
         
-        let dataStr = """
-        {
-        "name": "jane",
-        "age": 12,
-        "id": 0
-        }
-        """
         let realm = try! Realm()
-        guard let data = dataStr.data(using: .utf8) else {
+        guard let data = dataStudentStr.data(using: .utf8) else {
             return
         }
-    
+        
         let obj = try! JSONDecoder().decode(Student.self, from: data)
         
         try! realm.write {
@@ -160,46 +173,93 @@ class ViewController: UIViewController {
     }
     
     func insertRealmFromStudentDetailJson() {
-            
-            let dataStr = """
-            {
-            "name": "jane",
-            "age": 12,
-            "song": "",
-            "date": "2020-04-01 12:23:59",
-            "id": 1
-            }
-            """
-            let realm = try! Realm()
-            guard let data = dataStr.data(using: .utf8) else {
-                return
-            }
         
-            let obj = try! JSONDecoder().decode(StudentDetail.self, from: data)
-        
-            
-            try! realm.write {
-                realm.add(obj, update: .modified)
-            }
+        let realm = try! Realm()
+        guard let data = dataStudentDetailStr.data(using: .utf8) else {
+            return
         }
         
-        func loadRealmFromStudentDetailJson() {
-            let realm = try! Realm()
+        let obj = try! JSONDecoder().decode(StudentDetail.self, from: data)
+        
+        
+        try! realm.write {
+            realm.add(obj, update: .modified)
+        }
+    }
+    
+    func loadRealmFromStudentDetailJson() {
+        let realm = try! Realm()
+        
+        guard let obj = realm.objects(StudentDetail.self).first else {
+            return
+        }
+        
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        
+        let data = try! encoder.encode(obj)
+        
+        let jsonStr = String(data: data, encoding: .utf8)
+        
+        
+        print(obj.description as Any)
+        print(jsonStr?.description as Any)
+    }
+    
+    func insertRealmMangerForSudent() {
+        
+    
+        guard let data = dataStudentStr.data(using: .utf8) else {
+            return
+        }
+        
+        let manager = RealmManger<Student> ()
+        
+        do {
+            let obj = try! JSONDecoder().decode(Student.self, from: data)
             
-            guard let obj = realm.objects(StudentDetail.self).first else {
-                return
+            
+            try manager.deleteAll()
+            //ADD
+            try manager.add(obj: obj)
+            
+            let result = manager.findFirst()
+            
+            guard let student = result else {
+                print("findFirst result1 not found")
+                throw NSError(domain: "errorメッセージ", code: -1, userInfo: nil)
+            }
+            print("add => findFirst after:" + student.description  )
+            
+            }  catch let error as NSError {
+                // If the encryption key is wrong, `error` will say that it's an invalid database
+                fatalError("Error add realm: \(error)")
+            }
+        
+        do {
+            
+            var result = manager.findFirst()
+            
+            guard let student = result else {
+                print("findFirst result2 not found")
+                throw NSError(domain: "errorメッセージ", code: -1, userInfo: nil)
             }
             
-            let encoder = JSONEncoder()
-            encoder.outputFormatting = .prettyPrinted
+            print("update => findFirst before:" + student.description  )
             
-            let data = try! encoder.encode(obj)
+            student.age = 19
             
-            let jsonStr = String(data: data, encoding: .utf8)
+            // Update
+            try manager.update(obj: student)
             
+            result = manager.findFirst()
             
-            print(obj.description as Any)
-            print(jsonStr?.description as Any)
+            print("update => findFirst after:" + student.description  )
+            
+        }  catch let error as NSError {
+            // If the encryption key is wrong, `error` will say that it's an invalid database
+            fatalError("Error update realm: \(error)")
         }
+    }
 }
 
