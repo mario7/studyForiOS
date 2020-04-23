@@ -20,6 +20,8 @@
 		03E52CE1245003F300C79080 /* RealmBaseDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E52CE0245003F300C79080 /* RealmBaseDao.swift */; };
 		03E52CE324500C0400C79080 /* SampleObjectAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E52CE224500C0400C79080 /* SampleObjectAccess.swift */; };
 		03E52CE52450202100C79080 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E52CE42450202100C79080 /* RealmManager.swift */; };
+		03F84E9A2451DEC5007701FB /* RealmMangerAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F84E992451DEC5007701FB /* RealmMangerAccess.swift */; };
+		03F84E9C2451DF99007701FB /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F84E9B2451DF99007701FB /* Student.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		03E52CE0245003F300C79080 /* RealmBaseDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBaseDao.swift; sourceTree = "<group>"; };
 		03E52CE224500C0400C79080 /* SampleObjectAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleObjectAccess.swift; sourceTree = "<group>"; };
 		03E52CE42450202100C79080 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		03F84E992451DEC5007701FB /* RealmMangerAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMangerAccess.swift; sourceTree = "<group>"; };
+		03F84E9B2451DF99007701FB /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,12 +116,10 @@
 		037A2DF4243CB17000A6AE28 /* realmAndJsonSample */ = {
 			isa = PBXGroup;
 			children = (
+				03F84E9D2451DFBF007701FB /* realm */,
 				037A2DF5243CB17000A6AE28 /* AppDelegate.swift */,
 				037A2DF7243CB17000A6AE28 /* SceneDelegate.swift */,
 				037A2DF9243CB17000A6AE28 /* ViewController.swift */,
-				03E52CE0245003F300C79080 /* RealmBaseDao.swift */,
-				03E52CE42450202100C79080 /* RealmManager.swift */,
-				03E52CE224500C0400C79080 /* SampleObjectAccess.swift */,
 				037A2DFB243CB17000A6AE28 /* Main.storyboard */,
 				037A2DFE243CB17000A6AE28 /* Assets.xcassets */,
 				037A2E00243CB17000A6AE28 /* LaunchScreen.storyboard */,
@@ -151,6 +153,18 @@
 				03DA3E99244195FF00C6C4C4 /* Realm.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		03F84E9D2451DFBF007701FB /* realm */ = {
+			isa = PBXGroup;
+			children = (
+				03E52CE0245003F300C79080 /* RealmBaseDao.swift */,
+				03E52CE42450202100C79080 /* RealmManager.swift */,
+				03E52CE224500C0400C79080 /* SampleObjectAccess.swift */,
+				03F84E9B2451DF99007701FB /* Student.swift */,
+				03F84E992451DEC5007701FB /* RealmMangerAccess.swift */,
+			);
+			path = realm;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,11 +323,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				037A2DFA243CB17000A6AE28 /* ViewController.swift in Sources */,
+				03F84E9A2451DEC5007701FB /* RealmMangerAccess.swift in Sources */,
 				03E52CE1245003F300C79080 /* RealmBaseDao.swift in Sources */,
 				037A2DF6243CB17000A6AE28 /* AppDelegate.swift in Sources */,
 				037A2DF8243CB17000A6AE28 /* SceneDelegate.swift in Sources */,
 				03E52CE324500C0400C79080 /* SampleObjectAccess.swift in Sources */,
 				03E52CE52450202100C79080 /* RealmManager.swift in Sources */,
+				03F84E9C2451DF99007701FB /* Student.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,7 +561,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = realmAndJsonSampleTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -569,7 +585,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = realmAndJsonSampleTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -721,7 +737,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = realmAndJsonSampleTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

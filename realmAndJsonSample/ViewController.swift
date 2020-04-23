@@ -9,32 +9,6 @@
 import UIKit
 import RealmSwift
 
-class Student: Object, Codable, NSCopying {
-    
-    func copy(with zone: NSZone? = nil) -> Any {
-        let copy = Student()
-        copy.id = id
-        copy.name = name
-        copy.age = age
-        return copy
-    }
-    
-    @objc dynamic var id = 0
-    @objc dynamic var name = ""
-    @objc dynamic var age = 11
-    
-    override static func primaryKey() -> String? {
-        return "id"
-    }
-    
-    convenience init(name: String, age: Int) {
-        self.init()
-        self.id = 0
-        self.name = name
-        self.age = age
-    }
-}
-
 class StudentDetail: Object, Codable {
     
     
@@ -130,10 +104,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        insertRealmMangerForSudent()
-        updateRealmMangerForStudent()
-        deleteRealmMangerForStudent()
-        
         //        insertRealmFromStudentJson()
         //        loadRealmFromStudentJson()
         //
@@ -223,91 +193,8 @@ class ViewController: UIViewController {
         print(jsonStr?.description as Any)
     }
     
-    func insertRealmMangerForSudent() {
-        
-        
-        guard let data = dataStudentStr.data(using: .utf8) else {
-            return
-        }
-        
-        let manager = RealmManger<Student> ()
-        
-        do {
-            let obj = try! JSONDecoder().decode(Student.self, from: data)
-            
-            
-            try manager.deleteAll()
-            //ADD
-            try manager.add(obj: obj)
-            
-            let result = manager.findFirst()
-            
-            guard let student = result else {
-                print("findFirst result1 not found")
-                throw NSError(domain: "errorメッセージ", code: -1, userInfo: nil)
-            }
-            print("add => findFirst after:" + student.description  )
-            
-        }  catch let error as NSError {
-            // If the encryption key is wrong, `error` will say that it's an invalid database
-            fatalError("Error add realm: \(error)")
-        }
-        
-    }
+
     
-    func updateRealmMangerForStudent() {
-        do {
-            let manager = RealmManger<Student> ()
-            //1.read
-            let result = manager.findFirst()
-            guard let student = result else {
-                print("findFirst result2 not found")
-                throw NSError(domain: "errorメッセージ", code: -1, userInfo: nil)
-            }
-            print("1.read => findFirst before:" + student.description  )
-            
-            //2.update
-            let realm = try! Realm()
-            try realm.write {
-                student.age = 19
-            }
-            print("2.update => findFirst after1:" + student.description  )
-            let student2 = manager.findFirst()
-            print("3.read => findFirst student2:" + (student2?.description ?? "none") )
-            
-            //3.Update
-            let  updateStudent = Student(name: "test", age: 20)
-            print("4.update => findFirst updateStudent:" + updateStudent.description  )
-            try manager.update(obj: updateStudent) {
-                let student3 = manager.findFirst()
-                print("5.read => findFirst student3:" + (student3?.description ?? "none") )
-            }
-        }  catch let error as NSError {
-            // If the encryption key is wrong, `error` will say that it's an invalid database
-            fatalError("Error update realm: \(error)")
-        }
-    }
-    
-    func deleteRealmMangerForStudent() {
-        do {
-            let manager = RealmManger<Student> ()
-            //try manager.deleteAll()
-            
-            //let  deleteStudent = Student(name: "test", age: 20)
-            guard let deleteStudent = manager.findFirst() else {
-                print("delete => data not found")
-                return
-            }
-            
-            try manager.delete(obj: deleteStudent)
-            
-            let student = manager.findFirst()
-            print("delete => findFirst student:" + (student?.description ?? "none") )
-            
-        }  catch let error as NSError {
-            // If the encryption key is wrong, `error` will say that it's an invalid database
-            fatalError("Error delete realm: \(error)")
-        }
-    }
+   
 }
 
