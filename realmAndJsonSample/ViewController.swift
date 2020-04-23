@@ -9,7 +9,16 @@
 import UIKit
 import RealmSwift
 
-class Student: Object, Codable {
+class Student: Object, Codable, NSCopying {
+    
+    func copy(with zone: NSZone? = nil) -> Any {
+        let copy = Student()
+        copy.id = id
+        copy.name = name
+        copy.age = age
+        return copy
+    }
+    
     
     @objc dynamic var id = 0
     @objc dynamic var name = ""
@@ -116,6 +125,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         insertRealmMangerForSudent()
+        updateRealmMangerForStudent()
         
 //        insertRealmFromStudentJson()
 //        loadRealmFromStudentJson()
@@ -236,9 +246,14 @@ class ViewController: UIViewController {
                 fatalError("Error add realm: \(error)")
             }
         
+    }
+    
+    func updateRealmMangerForStudent() {
+        
         do {
+            let manager = RealmManger<Student> ()
             
-            var result = manager.findFirst()
+            let result = manager.findFirst()
             
             guard let student = result else {
                 print("findFirst result2 not found")
@@ -247,14 +262,15 @@ class ViewController: UIViewController {
             
             print("update => findFirst before:" + student.description  )
             
-            student.age = 19
+            let updateStudent = student.copy() as! Student
+            updateStudent.age = 19
             
             // Update
-            try manager.update(obj: student)
-            
-            result = manager.findFirst()
-            
-            print("update => findFirst after:" + student.description  )
+            try manager.update(obj: updateStudent) {
+                let student = manager.findFirst()
+                
+                print("update => findFirst after:" + (student?.description ?? "none") )
+            }
             
         }  catch let error as NSError {
             // If the encryption key is wrong, `error` will say that it's an invalid database

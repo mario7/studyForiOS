@@ -95,7 +95,7 @@ class RealmManger <T: RealmSwift.Object> {
      - parameter :  T
      - parameter :  (() -> Void)?
      */
-    func update(obj: T, block:(() -> Void)? = nil) throws {
+    func update(obj: T,_ block:(() -> Void)? = nil) throws {
         
         try realm.write {
             block?()
