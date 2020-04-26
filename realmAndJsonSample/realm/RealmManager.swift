@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-class RealmManger <T: RealmSwift.Object> {
+class RealmManager <T: RealmSwift.Object> {
     private let  realm = try! Realm()
     
     /**

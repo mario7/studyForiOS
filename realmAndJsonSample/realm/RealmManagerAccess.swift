@@ -1,5 +1,5 @@
 //
-//  RealmMangerAccess.swift
+//  RealmManagerAccess.swift
 //  realmAndJsonSample
 //
 //  Created by snowman on 2020/04/23.
@@ -37,32 +37,37 @@ class RealmManagerAccess: Object  {
     }
     """
     
-    func accessRealmManger() {
+    func accessRealmManager() {
         
-        insertRealmMangerForSudent(jsonStr: dataStudentStr1)
-        insertRealmMangerForSudent(jsonStr: dataStudentStr2)
-        updateRealmMangerForStudent()
-        filterRealmMangerForStudent()
-        deleteRealmMangerForStudent()
+        insertRealmManagerForSudent(jsonStr: dataStudentStr1)
+        insertRealmManagerForSudent(jsonStr: dataStudentStr2)
+        updateRealmManagerForStudent()
+        filterRealmManagerForStudent()
+        deleteRealmManagerForStudent()
         
     }
     
     /**
      レコード追加
      */
-    func insertRealmMangerForSudent(jsonStr: String) {
+    
+    func insertRealmManagerFromJson() {
+        
+    }
+    
+    func insertRealmManagerForSudent(jsonStr: String) {
         
         print("\(#function) start")
         
-        let manager = RealmManger<Student> ()
+        let manager = RealmManager<Student> ()
         do {
             guard let data = jsonStr.data(using: .utf8) else {
                 throw NSError(domain: "error data failure", code: -1, userInfo: nil)
             }
             let obj = try JSONDecoder().decode(Student.self, from: data)
             try manager.add(obj: obj)
-            let student = manager.findFirst()
-            print("add => findFirst after:" + (student?.description ?? "not found")   )
+            let student = manager.findLast()
+            print("add => findLast after:" + (student?.description ?? "not found")   )
         }  catch let error as NSError {
             // If the encryption key is wrong, `error` will say that it's an invalid database
             fatalError("Error add realm: \(error)")
@@ -73,10 +78,10 @@ class RealmManagerAccess: Object  {
     /**
      レコード更新
      */
-    func updateRealmMangerForStudent() {
+    func updateRealmManagerForStudent() {
         print("\(#function) start")
         do {
-            let manager = RealmManger<Student> ()
+            let manager = RealmManager<Student> ()
             //1.read
             let result = manager.findFirst()
             guard let student = result else {
@@ -105,10 +110,10 @@ class RealmManagerAccess: Object  {
     /**
      レコード削除
      */
-    func deleteRealmMangerForStudent() {
+    func deleteRealmManagerForStudent() {
         print("\(#function) start")
         do {
-            let manager = RealmManger<Student> ()
+            let manager = RealmManager<Student> ()
             //try manager.deleteAll()
             
             //            let  obj = Student(name: "test", age: 20)
@@ -141,10 +146,10 @@ class RealmManagerAccess: Object  {
     /**
      レコード検索
      */
-    func filterRealmMangerForStudent() {
+    func filterRealmManagerForStudent() {
         print("\(#function) start")
         do {
-            let manager = RealmManger<Student> ()
+            let manager = RealmManager<Student> ()
             
             guard let primaryKey = manager.getPrimaryKey() else {
                 throw NSError(domain: "error=> getPrimaryKey not found", code: -1, userInfo: nil)
