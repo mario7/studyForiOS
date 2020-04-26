@@ -38,7 +38,7 @@ class RealmManagerAccess: Object  {
     """
     
     func accessRealmManager() {
-        
+        insertRealmManagerFromJson()
         insertRealmManagerForSudent(jsonStr: dataStudentStr1)
         insertRealmManagerForSudent(jsonStr: dataStudentStr2)
         updateRealmManagerForStudent()
@@ -48,13 +48,29 @@ class RealmManagerAccess: Object  {
     }
     
     /**
-     レコード追加
+     レコード追加(from json)
      */
-    
     func insertRealmManagerFromJson() {
+        let fileName = "student"
+        guard let url = Bundle.main.url(forResource: fileName, withExtension: "json") else {
+            return
+        }
+        let manager = RealmManager<Student> ()
+        do {
+            let data = try Data(contentsOf: url)
+            let obj = try JSONDecoder().decode(Student.self, from: data)
+            try manager.add(obj: obj)
+            let student = manager.findLast()
+            print("add => findLast after:" + (student?.description ?? "not found")   )
+        } catch {
+            print("error:\(error)")
+        }
         
     }
     
+    /**
+    レコード追加
+    */
     func insertRealmManagerForSudent(jsonStr: String) {
         
         print("\(#function) start")

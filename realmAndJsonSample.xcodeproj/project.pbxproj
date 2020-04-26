@@ -22,6 +22,7 @@
 		03E52CE52450202100C79080 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E52CE42450202100C79080 /* RealmManager.swift */; };
 		03F84E9C2451DF99007701FB /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F84E9B2451DF99007701FB /* Student.swift */; };
 		03F84E9F24559EF9007701FB /* RealmManagerAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F84E9E24559EF9007701FB /* RealmManagerAccess.swift */; };
+		03F84EA32455C979007701FB /* student.json in Resources */ = {isa = PBXBuildFile; fileRef = 03F84EA22455C978007701FB /* student.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		03E52CE42450202100C79080 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		03F84E9B2451DF99007701FB /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		03F84E9E24559EF9007701FB /* RealmManagerAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmManagerAccess.swift; sourceTree = "<group>"; };
+		03F84EA22455C978007701FB /* student.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = student.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 		03F84E9D2451DFBF007701FB /* realm */ = {
 			isa = PBXGroup;
 			children = (
+				03F84EA22455C978007701FB /* student.json */,
 				03F84E9E24559EF9007701FB /* RealmManagerAccess.swift */,
 				03E52CE0245003F300C79080 /* RealmBaseDao.swift */,
 				03E52CE42450202100C79080 /* RealmManager.swift */,
@@ -275,6 +278,7 @@
 				037A2E02243CB17000A6AE28 /* LaunchScreen.storyboard in Resources */,
 				037A2DFF243CB17000A6AE28 /* Assets.xcassets in Resources */,
 				037A2DFD243CB17000A6AE28 /* Main.storyboard in Resources */,
+				03F84EA32455C979007701FB /* student.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
