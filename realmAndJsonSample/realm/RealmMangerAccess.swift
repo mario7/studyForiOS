@@ -11,7 +11,7 @@ import RealmSwift
 
 class RealmMangerAccess: Object  {
     
-    let dataStudentStr = """
+let dataStudentStr = """
 {
 "name": "jane",
 "age": 12,
@@ -42,26 +42,18 @@ class RealmMangerAccess: Object  {
      */
     func insertRealmMangerForSudent() {
         
+        print("\(#function) start")
         guard let data = dataStudentStr.data(using: .utf8) else {
             return
         }
         
         let manager = RealmManger<Student> ()
-        
         do {
             let obj = try! JSONDecoder().decode(Student.self, from: data)
-            
             try manager.deleteAll()
-            //ADD
             try manager.add(obj: obj)
-            
-            let result = manager.findFirst()
-            
-            guard let student = result else {
-                print("findFirst result1 not found")
-                throw NSError(domain: "errorメッセージ", code: -1, userInfo: nil)
-            }
-            print("add => findFirst after:" + student.description  )
+            let student = manager.findFirst()
+            print("add => findFirst after:" + (student?.description ?? "not found")   )
             
         }  catch let error as NSError {
             // If the encryption key is wrong, `error` will say that it's an invalid database
@@ -73,6 +65,7 @@ class RealmMangerAccess: Object  {
      レコード更新
      */
     func updateRealmMangerForStudent() {
+        print("\(#function) start")
         do {
             let manager = RealmManger<Student> ()
             //1.read
@@ -83,22 +76,16 @@ class RealmMangerAccess: Object  {
             }
             print("1.read => findFirst before:" + student.description  )
             
-            //2.update
-            let realm = try! Realm()
-            try realm.write {
-                student.age = 19
+            //2.Update
+            try manager.update(obj: student) {
+                student.name = "test"
+                student.age = 20
+                print("12.update => findFirst updateStudent:" + student.description  )
             }
-            print("2.update => findFirst after1:" + student.description  )
-            let student2 = manager.findFirst()
-            print("3.read => findFirst student2:" + (student2?.description ?? "none") )
             
-            //3.Update
-            let  updateStudent = Student(name: "test", age: 20)
-            print("4.update => findFirst updateStudent:" + updateStudent.description  )
-            try manager.update(obj: updateStudent) {
-                let student3 = manager.findFirst()
-                print("5.read => findFirst student3:" + (student3?.description ?? "none") )
-            }
+            let student3 = manager.findFirst()
+            print("13.read => findFirst student3:" + (student3?.description ?? "none") )
+            
         }  catch let error as NSError {
             // If the encryption key is wrong, `error` will say that it's an invalid database
             fatalError("Error update realm: \(error)")
@@ -109,6 +96,7 @@ class RealmMangerAccess: Object  {
      レコード削除
      */
     func deleteRealmMangerForStudent() {
+        print("\(#function) start")
         do {
             let manager = RealmManger<Student> ()
             //try manager.deleteAll()

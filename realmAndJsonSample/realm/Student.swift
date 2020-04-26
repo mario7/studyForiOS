@@ -11,14 +11,6 @@ import RealmSwift
 
 class Student: Object, Codable, NSCopying {
     
-    func copy(with zone: NSZone? = nil) -> Any {
-        let copy = Student()
-        copy.id = id
-        copy.name = name
-        copy.age = age
-        return copy
-    }
-    
     @objc dynamic var id = 0
     @objc dynamic var name = ""
     @objc dynamic var age = 11
@@ -32,5 +24,13 @@ class Student: Object, Codable, NSCopying {
         self.id = 0
         self.name = name
         self.age = age
+    }
+    
+    func copy(with zone: NSZone? = nil) -> Any {
+        let copy = Student()
+        copy.id = id
+        copy.name = name
+        copy.age = age
+        return copy
     }
 }

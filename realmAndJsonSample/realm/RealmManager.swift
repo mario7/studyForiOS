@@ -85,7 +85,7 @@ class RealmManger <T: RealmSwift.Object> {
     func add(obj :T) throws {
         
         try realm.write {
-            realm.add(obj)
+            realm.add(obj, update: .modified)
         }
     }
     
@@ -125,4 +125,7 @@ class RealmManger <T: RealmSwift.Object> {
         
     }
     
+    func getRealm() -> Realm {
+       return realm
+    }
 }
