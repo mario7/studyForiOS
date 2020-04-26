@@ -44,22 +44,21 @@ let dataStudentStr = """
     func insertRealmMangerForSudent() {
         
         print("\(#function) start")
-        guard let data = dataStudentStr.data(using: .utf8) else {
-            return
-        }
         
         let manager = RealmManger<Student> ()
         do {
-            let obj = try! JSONDecoder().decode(Student.self, from: data)
-            try manager.deleteAll()
+            guard let data = dataStudentStr.data(using: .utf8) else {
+                throw NSError(domain: "error data failure", code: -1, userInfo: nil)
+            }
+            let obj = try JSONDecoder().decode(Student.self, from: data)
             try manager.add(obj: obj)
             let student = manager.findFirst()
             print("add => findFirst after:" + (student?.description ?? "not found")   )
-            
         }  catch let error as NSError {
             // If the encryption key is wrong, `error` will say that it's an invalid database
             fatalError("Error add realm: \(error)")
         }
+        print("\(#function) end")
         
     }
     /**
@@ -73,7 +72,7 @@ let dataStudentStr = """
             let result = manager.findFirst()
             guard let student = result else {
                 print("findFirst result2 not found")
-                throw NSError(domain: "errorメッセージ", code: -1, userInfo: nil)
+                throw NSError(domain: "error not found", code: -1, userInfo: nil)
             }
             print("1.read => findFirst before:" + student.description  )
             
@@ -81,16 +80,17 @@ let dataStudentStr = """
             try manager.update(obj: student) {
                 student.name = "test"
                 student.age = 20
-                print("12.update => findFirst updateStudent:" + student.description  )
+                print("2.update => findFirst updateStudent:" + student.description  )
             }
             
             let student3 = manager.findFirst()
-            print("13.read => findFirst student3:" + (student3?.description ?? "none") )
+            print("3.read => findFirst student3:" + (student3?.description ?? "none") )
             
         }  catch let error as NSError {
             // If the encryption key is wrong, `error` will say that it's an invalid database
             fatalError("Error update realm: \(error)")
         }
+        print("\(#function) end")
     }
     
     /**
@@ -109,7 +109,7 @@ let dataStudentStr = """
             }
             print("1.primaryKey= \(primaryKey) ")
             //1.delete for query
-            try manager.deleteWithQuery(query: "\(primaryKey) == '10' ")
+            try manager.deleteWithQuery(query: "\(primaryKey) == '1' ")
             
             guard let obj = manager.findFirst() else {
                 print("2.delete => data not found")
@@ -126,6 +126,7 @@ let dataStudentStr = """
             // If the encryption key is wrong, `error` will say that it's an invalid database
             fatalError("Error delete realm: \(error)")
         }
+        print("\(#function) end")
     }
     
     /**
@@ -142,16 +143,15 @@ let dataStudentStr = """
                 print("1.primaryKey= \(primaryKey) ")
                 
                 let primaryKeyValue = "1"
-                guard let student =  manager.findByPrimaryKey(key: primaryKeyValue) else {
-                    throw NSError(domain: "error=> findByPrimaryKey not found", code: -2, userInfo: nil)
-                }
+                let student =  manager.findByPrimaryKey(key: primaryKeyValue)
                 
-                print("2.filter => findFirst student:" + student.description )
+                print("2.filter => findFirst student:" + (student?.description ?? "none" ))
                 
             }  catch let error as NSError {
                 // If the encryption key is wrong, `error` will say that it's an invalid database
                 fatalError("Error delete realm: \(error)")
             }
+            print("\(#function) end")
         }
     
 }
