@@ -13,7 +13,7 @@ class Student: Object, Codable, NSCopying {
     
     @objc dynamic var studentId = ""
     @objc dynamic var name = ""
-    @objc dynamic var age = 11
+    @objc dynamic var age = 0
     
     override static func primaryKey() -> String? {
         return "studentId"

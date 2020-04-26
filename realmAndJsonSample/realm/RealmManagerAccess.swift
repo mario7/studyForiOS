@@ -11,27 +11,36 @@ import RealmSwift
 
 class RealmManagerAccess: Object  {
     
-let dataStudentStr = """
-{
-"name": "jane",
-"age": 12,
-"studentId": "1"
-}
-"""
+    let dataStudentStr1 = """
+    {
+    "name": "jane",
+    "age": 12,
+    "studentId": "1"
+    }
+    """
+    
+    let dataStudentStr2 = """
+    {
+    "name": "tom",
+    "age": 12,
+    "studentId": "2"
+    }
+    """
     
     let dataStudentDetailStr = """
-{
-"name": "jane",
-"age": 12,
-"song": "",
-"date": "2020-04-01 12:23:59",
-"studentId": "1"
-}
-"""
+    {
+    "name": "jane",
+    "age": 12,
+    "song": "",
+    "date": "2020-04-01 12:23:59",
+    "studentId": "1"
+    }
+    """
     
     func accessRealmManger() {
         
-        insertRealmMangerForSudent()
+        insertRealmMangerForSudent(jsonStr: dataStudentStr1)
+        insertRealmMangerForSudent(jsonStr: dataStudentStr2)
         updateRealmMangerForStudent()
         filterRealmMangerForStudent()
         deleteRealmMangerForStudent()
@@ -41,13 +50,13 @@ let dataStudentStr = """
     /**
      レコード追加
      */
-    func insertRealmMangerForSudent() {
+    func insertRealmMangerForSudent(jsonStr: String) {
         
         print("\(#function) start")
         
         let manager = RealmManger<Student> ()
         do {
-            guard let data = dataStudentStr.data(using: .utf8) else {
+            guard let data = jsonStr.data(using: .utf8) else {
                 throw NSError(domain: "error data failure", code: -1, userInfo: nil)
             }
             let obj = try JSONDecoder().decode(Student.self, from: data)
@@ -102,20 +111,20 @@ let dataStudentStr = """
             let manager = RealmManger<Student> ()
             //try manager.deleteAll()
             
-//            let  obj = Student(name: "test", age: 20)
+            //            let  obj = Student(name: "test", age: 20)
             
             guard let primaryKey = manager.getPrimaryKey() else {
                 throw NSError(domain: "error=> getPrimaryKey", code: -1, userInfo: nil)
             }
             print("1.primaryKey= \(primaryKey) ")
             //1.delete for query
-            try manager.deleteWithQuery(query: "\(primaryKey) == '1' ")
+            try manager.deleteWithQuery(query: "\(primaryKey) == '2' ")
             
             guard let obj = manager.findFirst() else {
                 print("2.delete => data not found")
                 return
             }
-            
+            print("2.delete => Sucess")
             //2.delete
             try manager.delete(obj: obj)
             
@@ -130,28 +139,28 @@ let dataStudentStr = """
     }
     
     /**
-         レコード検索
-         */
-        func filterRealmMangerForStudent() {
-            print("\(#function) start")
-            do {
-                let manager = RealmManger<Student> ()
-                
-                guard let primaryKey = manager.getPrimaryKey() else {
-                    throw NSError(domain: "error=> getPrimaryKey not found", code: -1, userInfo: nil)
-                }
-                print("1.primaryKey= \(primaryKey) ")
-                
-                let primaryKeyValue = "1"
-                let student =  manager.findByPrimaryKey(key: primaryKeyValue)
-                
-                print("2.filter => findFirst student:" + (student?.description ?? "none" ))
-                
-            }  catch let error as NSError {
-                // If the encryption key is wrong, `error` will say that it's an invalid database
-                fatalError("Error delete realm: \(error)")
+     レコード検索
+     */
+    func filterRealmMangerForStudent() {
+        print("\(#function) start")
+        do {
+            let manager = RealmManger<Student> ()
+            
+            guard let primaryKey = manager.getPrimaryKey() else {
+                throw NSError(domain: "error=> getPrimaryKey not found", code: -1, userInfo: nil)
             }
-            print("\(#function) end")
+            print("1.primaryKey= \(primaryKey) ")
+            
+            let primaryKeyValue = "1"
+            let student =  manager.findByPrimaryKey(key: primaryKeyValue)
+            
+            print("2.filter => findFirst student:" + (student?.description ?? "none" ))
+            
+        }  catch let error as NSError {
+            // If the encryption key is wrong, `error` will say that it's an invalid database
+            fatalError("Error delete realm: \(error)")
         }
+        print("\(#function) end")
+    }
     
 }
