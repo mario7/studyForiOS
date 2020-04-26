@@ -15,7 +15,7 @@ let dataStudentStr = """
 {
 "name": "jane",
 "age": 12,
-"id": 0
+"studentId": "1"
 }
 """
     
@@ -25,7 +25,7 @@ let dataStudentStr = """
 "age": 12,
 "song": "",
 "date": "2020-04-01 12:23:59",
-"id": 1
+"studentId": "1"
 }
 """
     
@@ -34,6 +34,7 @@ let dataStudentStr = """
         insertRealmMangerForSudent()
         updateRealmMangerForStudent()
         deleteRealmMangerForStudent()
+        filterRealmMangerForStudent()
         
     }
     
@@ -101,21 +102,56 @@ let dataStudentStr = """
             let manager = RealmManger<Student> ()
             //try manager.deleteAll()
             
-            //let  deleteStudent = Student(name: "test", age: 20)
-            guard let deleteStudent = manager.findFirst() else {
-                print("delete => data not found")
+//            let  obj = Student(name: "test", age: 20)
+            
+            guard let primaryKey = manager.getPrimaryKey() else {
+                throw NSError(domain: "error=> getPrimaryKey", code: -1, userInfo: nil)
+            }
+            print("1.primaryKey= \(primaryKey) ")
+            //1.delete for query
+            try manager.deleteWithQuery(query: "\(primaryKey) == '10' ")
+            
+            guard let obj = manager.findFirst() else {
+                print("2.delete => data not found")
                 return
             }
             
-            try manager.delete(obj: deleteStudent)
+            //2.delete
+            try manager.delete(obj: obj)
             
             let student = manager.findFirst()
-            print("delete => findFirst student:" + (student?.description ?? "none") )
+            print("3.delete => findFirst student:" + (student?.description ?? "none") )
             
         }  catch let error as NSError {
             // If the encryption key is wrong, `error` will say that it's an invalid database
             fatalError("Error delete realm: \(error)")
         }
     }
+    
+    /**
+         レコード検索
+         */
+        func filterRealmMangerForStudent() {
+            print("\(#function) start")
+            do {
+                let manager = RealmManger<Student> ()
+                
+                guard let primaryKey = manager.getPrimaryKey() else {
+                    throw NSError(domain: "error=> getPrimaryKey", code: -1, userInfo: nil)
+                }
+                print("1.primaryKey= \(primaryKey) ")
+                
+                let primaryKeyValue = "1"
+                guard let student =  manager.findByPrimaryKey(key: primaryKeyValue) else {
+                    throw NSError(domain: "error=> findByPrimaryKey", code: -2, userInfo: nil)
+                }
+                
+                print("2.filter => findFirst student:" + student.description )
+                
+            }  catch let error as NSError {
+                // If the encryption key is wrong, `error` will say that it's an invalid database
+                fatalError("Error delete realm: \(error)")
+            }
+        }
     
 }

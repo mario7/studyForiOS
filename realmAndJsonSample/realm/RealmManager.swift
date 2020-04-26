@@ -13,12 +13,25 @@ class RealmManger <T: RealmSwift.Object> {
     private let  realm = try! Realm()
     
     /**
+    プライマリーキー取得
+    - returns: String?
+    */
+    func getPrimaryKey() -> String? {
+        guard let key = T.primaryKey() else {
+            print("primaryKey 未設定")
+            return nil
+        }
+        return key
+        
+    }
+        
+    /**
      新規主キー取得
      条件：primaryKey設定された場合のみ
      - returns:
      */
     func getIncreasedPrimaryKey() -> Int? {
-        guard let key = T.primaryKey() else {
+        guard let key = getPrimaryKey() else {
             print("primaryKey 未設定")
             return nil
         }
@@ -104,7 +117,21 @@ class RealmManger <T: RealmSwift.Object> {
     }
     
     /**
-     * レコードの削除
+     レコードの削除
+    - parameter :  query
+     */
+    func deleteWithQuery(query: String) throws {
+         let objs =  filter(query: query)
+        
+        try realm.write {
+            realm.delete(objs)
+        }
+        
+    }
+    
+    /**
+     レコードの削除
+    - parameter :  T
      */
     func delete(obj: T) throws {
         
