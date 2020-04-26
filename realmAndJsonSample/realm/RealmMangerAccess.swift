@@ -33,8 +33,8 @@ let dataStudentStr = """
         
         insertRealmMangerForSudent()
         updateRealmMangerForStudent()
-        deleteRealmMangerForStudent()
         filterRealmMangerForStudent()
+        deleteRealmMangerForStudent()
         
     }
     
@@ -137,13 +137,13 @@ let dataStudentStr = """
                 let manager = RealmManger<Student> ()
                 
                 guard let primaryKey = manager.getPrimaryKey() else {
-                    throw NSError(domain: "error=> getPrimaryKey", code: -1, userInfo: nil)
+                    throw NSError(domain: "error=> getPrimaryKey not found", code: -1, userInfo: nil)
                 }
                 print("1.primaryKey= \(primaryKey) ")
                 
                 let primaryKeyValue = "1"
                 guard let student =  manager.findByPrimaryKey(key: primaryKeyValue) else {
-                    throw NSError(domain: "error=> findByPrimaryKey", code: -2, userInfo: nil)
+                    throw NSError(domain: "error=> findByPrimaryKey not found", code: -2, userInfo: nil)
                 }
                 
                 print("2.filter => findFirst student:" + student.description )
