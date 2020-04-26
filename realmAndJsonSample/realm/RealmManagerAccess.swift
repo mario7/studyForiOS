@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-class RealmMangerAccess: Object  {
+class RealmManagerAccess: Object  {
     
 let dataStudentStr = """
 {
