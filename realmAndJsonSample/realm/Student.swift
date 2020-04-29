@@ -15,7 +15,7 @@ class Student: Object, Codable, NSCopying {
     @objc dynamic var name = ""
     @objc dynamic var age = 0
     
-    override static func primaryKey() -> String? {
+    override public static func primaryKey() -> String? {
         return "studentId"
     }
     

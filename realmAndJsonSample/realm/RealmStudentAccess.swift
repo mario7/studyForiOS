@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-class RealmManagerAccess: Object  {
+class RealmStudentAccess: Object  {
     
     let dataStudentStr1 = """
     {
@@ -55,7 +55,7 @@ class RealmManagerAccess: Object  {
         guard let url = Bundle.main.url(forResource: fileName, withExtension: "json") else {
             return
         }
-        let manager = RealmManager<Student> ()
+        let manager = RealmBaseDao<Student> ()
         do {
             let data = try Data(contentsOf: url)
             let obj = try JSONDecoder().decode(Student.self, from: data)
@@ -75,13 +75,13 @@ class RealmManagerAccess: Object  {
         
         print("\(#function) start")
         
-        let manager = RealmManager<Student> ()
+        let manager = RealmBaseDao<Student> ()
         do {
             guard let data = jsonStr.data(using: .utf8) else {
                 throw NSError(domain: "error data failure", code: -1, userInfo: nil)
             }
             let obj = try JSONDecoder().decode(Student.self, from: data)
-            try manager.add(obj: obj)
+            manager.add(obj: obj)
             let student = manager.findLast()
             print("add => findLast after:" + (student?.description ?? "not found")   )
         }  catch let error as NSError {
@@ -97,7 +97,7 @@ class RealmManagerAccess: Object  {
     func updateRealmManagerForStudent() {
         print("\(#function) start")
         do {
-            let manager = RealmManager<Student> ()
+            let manager = RealmBaseDao<Student> ()
             //1.read
             let result = manager.findFirst()
             guard let student = result else {
@@ -107,7 +107,7 @@ class RealmManagerAccess: Object  {
             print("1.read => findFirst before:" + student.description  )
             
             //2.Update
-            try manager.update(obj: student) {
+            manager.update(obj: student) {
                 student.name = "test"
                 student.age = 20
                 print("2.update => findFirst updateStudent:" + student.description  )
@@ -129,7 +129,7 @@ class RealmManagerAccess: Object  {
     func deleteRealmManagerForStudent() {
         print("\(#function) start")
         do {
-            let manager = RealmManager<Student> ()
+            let manager = RealmBaseDao<Student> ()
             //try manager.deleteAll()
             
             //            let  obj = Student(name: "test", age: 20)
@@ -139,7 +139,7 @@ class RealmManagerAccess: Object  {
             }
             print("1.primaryKey= \(primaryKey) ")
             //1.delete for query
-            try manager.deleteWithQuery(query: "\(primaryKey) == '2' ")
+            manager.deleteWithQuery(query: "\(primaryKey) == '2' ")
             
             guard let obj = manager.findFirst() else {
                 print("2.delete => data not found")
@@ -147,7 +147,7 @@ class RealmManagerAccess: Object  {
             }
             print("2.delete => Sucess")
             //2.delete
-            try manager.delete(obj: obj)
+            manager.delete(obj: obj)
             
             let student = manager.findFirst()
             print("3.delete => findFirst student:" + (student?.description ?? "none") )
@@ -165,17 +165,17 @@ class RealmManagerAccess: Object  {
     func filterRealmManagerForStudent() {
         print("\(#function) start")
         do {
-            let manager = RealmManager<Student> ()
+            let manager = RealmBaseDao<Student> ()
             
             guard let primaryKey = manager.getPrimaryKey() else {
                 throw NSError(domain: "error=> getPrimaryKey not found", code: -1, userInfo: nil)
             }
             print("1.primaryKey= \(primaryKey) ")
             
-            let primaryKeyValue = "1"
-            let student =  manager.findByPrimaryKey(key: primaryKeyValue)
+            //let primaryKeyValue = "1"
+            //let student =  manager.findByPrimaryKey(key: primaryKeyValue)
             
-            print("2.filter => findFirst student:" + (student?.description ?? "none" ))
+            //print("2.filter => findFirst student:" + (student?.description ?? "none" ))
             
         }  catch let error as NSError {
             // If the encryption key is wrong, `error` will say that it's an invalid database

@@ -10,23 +10,23 @@ import Foundation
 import RealmSwift
 
 class RealmBaseDao <T: RealmSwift.Object> {
-    let realm: Realm
+    let realm = try! Realm()
 
     init() {
-        // Generate a random encryption key
-        var key = Data(count: 64)
-        _ = key.withUnsafeMutableBytes { bytes in
-            SecRandomCopyBytes(kSecRandomDefault, 64, bytes)
-        }
-
-        // Open the encrypted Realm file
-        let config = Realm.Configuration(encryptionKey: key)
-        do {
-            realm = try Realm(configuration: config)
-        } catch let error as NSError {
-            // If the encryption key is wrong, `error` will say that it's an invalid database
-            fatalError("Error opening realm: \(error)")
-        }
+//        // Generate a random encryption key
+//        var key = Data(count: 64)
+//        _ = key.withUnsafeMutableBytes { bytes in
+//            SecRandomCopyBytes(kSecRandomDefault, 64, bytes)
+//        }
+//
+//        // Open the encrypted Realm file
+//        let config = Realm.Configuration(encryptionKey: key)
+//        do {
+//            realm = try Realm(configuration: config)
+//        } catch let error as NSError {
+//            // If the encryption key is wrong, `error` will say that it's an invalid database
+//            fatalError("Error opening realm: \(error)")
+//        }
     }
 
     /**
@@ -134,5 +134,19 @@ class RealmBaseDao <T: RealmSwift.Object> {
         }
     }
     
-   
+    func deleteWithQuery(query: String) {
+        let objs = realm.objects(T.self).filter(query)
+        do {
+            try realm.write {
+                realm.delete(objs)
+            }
+        } catch let error as NSError {
+            print(error.description)
+        }
+        
+    }
+    
+    func getPrimaryKey() -> String?{
+        return T.primaryKey()
+    }
 }

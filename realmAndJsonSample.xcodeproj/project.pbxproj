@@ -19,10 +19,9 @@
 		03DA3E9C2441961300C6C4C4 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03DA3E9B2441961300C6C4C4 /* RealmSwift.framework */; };
 		03E52CE1245003F300C79080 /* RealmBaseDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E52CE0245003F300C79080 /* RealmBaseDao.swift */; };
 		03E52CE324500C0400C79080 /* SampleObjectAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E52CE224500C0400C79080 /* SampleObjectAccess.swift */; };
-		03E52CE52450202100C79080 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E52CE42450202100C79080 /* RealmManager.swift */; };
 		03F84E9C2451DF99007701FB /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F84E9B2451DF99007701FB /* Student.swift */; };
-		03F84E9F24559EF9007701FB /* RealmManagerAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F84E9E24559EF9007701FB /* RealmManagerAccess.swift */; };
 		03F84EA32455C979007701FB /* student.json in Resources */ = {isa = PBXBuildFile; fileRef = 03F84EA22455C978007701FB /* student.json */; };
+		03F84EA52459B6B3007701FB /* RealmStudentAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F84EA42459B6B3007701FB /* RealmStudentAccess.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,10 +60,9 @@
 		03DA3E9B2441961300C6C4C4 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 		03E52CE0245003F300C79080 /* RealmBaseDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBaseDao.swift; sourceTree = "<group>"; };
 		03E52CE224500C0400C79080 /* SampleObjectAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleObjectAccess.swift; sourceTree = "<group>"; };
-		03E52CE42450202100C79080 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		03F84E9B2451DF99007701FB /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
-		03F84E9E24559EF9007701FB /* RealmManagerAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmManagerAccess.swift; sourceTree = "<group>"; };
 		03F84EA22455C978007701FB /* student.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = student.json; sourceTree = "<group>"; };
+		03F84EA42459B6B3007701FB /* RealmStudentAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmStudentAccess.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,10 +158,9 @@
 		03F84E9D2451DFBF007701FB /* realm */ = {
 			isa = PBXGroup;
 			children = (
+				03F84EA42459B6B3007701FB /* RealmStudentAccess.swift */,
 				03F84EA22455C978007701FB /* student.json */,
-				03F84E9E24559EF9007701FB /* RealmManagerAccess.swift */,
 				03E52CE0245003F300C79080 /* RealmBaseDao.swift */,
-				03E52CE42450202100C79080 /* RealmManager.swift */,
 				03E52CE224500C0400C79080 /* SampleObjectAccess.swift */,
 				03F84E9B2451DF99007701FB /* Student.swift */,
 			);
@@ -327,13 +324,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				037A2DFA243CB17000A6AE28 /* ViewController.swift in Sources */,
-				03F84E9F24559EF9007701FB /* RealmManagerAccess.swift in Sources */,
 				03E52CE1245003F300C79080 /* RealmBaseDao.swift in Sources */,
 				037A2DF6243CB17000A6AE28 /* AppDelegate.swift in Sources */,
 				037A2DF8243CB17000A6AE28 /* SceneDelegate.swift in Sources */,
 				03E52CE324500C0400C79080 /* SampleObjectAccess.swift in Sources */,
-				03E52CE52450202100C79080 /* RealmManager.swift in Sources */,
 				03F84E9C2451DF99007701FB /* Student.swift in Sources */,
+				03F84EA52459B6B3007701FB /* RealmStudentAccess.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
