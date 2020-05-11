@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		030D0F922462995A00567758 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 030D0F902462995A00567758 /* CryptoSwift.framework */; };
 		037A2DF6243CB17000A6AE28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037A2DF5243CB17000A6AE28 /* AppDelegate.swift */; };
 		037A2DF8243CB17000A6AE28 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037A2DF7243CB17000A6AE28 /* SceneDelegate.swift */; };
 		037A2DFA243CB17000A6AE28 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037A2DF9243CB17000A6AE28 /* ViewController.swift */; };
@@ -42,6 +43,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		030D0F8E246295C600567758 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoSwift.framework; path = ../realmAndJsonSample/Carthage/Build/iOS/CryptoSwift.framework; sourceTree = "<group>"; };
+		030D0F902462995A00567758 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoSwift.framework; path = Carthage/Build/iOS/CryptoSwift.framework; sourceTree = "<group>"; };
+		030D0F912462995A00567758 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = Carthage/Build/iOS/GoogleMaps.framework; sourceTree = "<group>"; };
+		030D0F9524629C5800567758 /* GooglePlaces.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlaces.framework; path = Carthage/Build/iOS/GooglePlaces.framework; sourceTree = "<group>"; };
 		037A2DF2243CB17000A6AE28 /* realmAndJsonSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = realmAndJsonSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		037A2DF5243CB17000A6AE28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		037A2DF7243CB17000A6AE28 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				030D0F922462995A00567758 /* CryptoSwift.framework in Frameworks */,
 				03DA3E9C2441961300C6C4C4 /* RealmSwift.framework in Frameworks */,
 				03DA3E9A244195FF00C6C4C4 /* Realm.framework in Frameworks */,
 			);
@@ -149,6 +155,10 @@
 		03DA3E98244195FF00C6C4C4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				030D0F9524629C5800567758 /* GooglePlaces.framework */,
+				030D0F8E246295C600567758 /* CryptoSwift.framework */,
+				030D0F902462995A00567758 /* CryptoSwift.framework */,
+				030D0F912462995A00567758 /* GoogleMaps.framework */,
 				03DA3E9B2441961300C6C4C4 /* RealmSwift.framework */,
 				03DA3E99244195FF00C6C4C4 /* Realm.framework */,
 			);
@@ -306,6 +316,7 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/CryptoSwift.framework",
 			);
 			name = "Realm Run Script";
 			outputFileListPaths = (
@@ -510,7 +521,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = realmAndJsonSample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				JSON_CONFIG = user_configure_dev.json;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -538,7 +549,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = realmAndJsonSample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				JSON_CONFIG = user_configure.json;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -712,7 +723,7 @@
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = "STAGING=1";
 				INFOPLIST_FILE = realmAndJsonSample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				JSON_CONFIG = user_configure_stg.json;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

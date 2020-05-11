@@ -14,10 +14,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        RealmStudentAccess().accessRealmManager()
+        accessRealmMangagerNormal()
+        //accessRealmManagerWithPrimaryKey()
         return true
     }
 
+    func accessRealmMangagerNormal() {
+        let fileName = "student"
+        guard let url = Bundle.main.url(forResource: fileName, withExtension: "json") else {
+            return
+        }
+        let accessor = RealmStudentAccess()
+        accessor.insertRealmManagerFromJson1(url)
+        accessor.updateRealmManagerForStudent()
+        accessor.filterRealmManagerForStudent()
+
+    }
+    
+    func accessRealmManagerWithPrimaryKey() {
+        let fileName = "student"
+        guard let url = Bundle.main.url(forResource: fileName, withExtension: "json") else {
+            return
+        }
+        
+        let accessor = RealmStudentAccess()
+        accessor.deleteRealmManagerForStudent()
+        accessor.insertRealmManagerFromJson1(url)
+        //accessor.insertRealmManagerFromJson2(url)
+        
+        //accessor.insertRealmManagerForSudent(jsonStr: dataStudentStr1)
+        //accessor.insertRealmManagerForSudent(jsonStr: dataStudentStr2)
+        accessor.updateRealmManagerForStudent()
+        //accessor.filterRealmManagerForStudent()
+        accessor.deleteRealmManagerForStudent()
+        
+    }
+    
     // MARK: UISceneSession Lifecycle
 
     @available (iOS 13.0,*)

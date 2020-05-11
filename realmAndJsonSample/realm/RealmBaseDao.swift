@@ -79,15 +79,24 @@ class RealmBaseDao <T: RealmSwift.Object> {
     }
 
     /**
-     * レコード追加を取得
+     * レコードの追加
      */
-    func add(obj :T) {
-        do {
-            try realm.write {
-                realm.add(obj)
-            }
-        } catch let error as NSError {
-            print(error.description)
+    func add(obj :T) throws {
+        
+        try realm.write {
+            //realm.add(obj, update: .modified)
+            realm.add(obj)
+        }
+        
+    }
+    
+    /**
+     * レコードの追加／更新
+     */
+    func addOrUpdate(obj :T) throws {
+        
+        try realm.write {
+            realm.add(obj, update: .modified)
         }
     }
 
@@ -148,5 +157,9 @@ class RealmBaseDao <T: RealmSwift.Object> {
     
     func getPrimaryKey() -> String?{
         return T.primaryKey()
+    }
+    
+    func getRealm() -> Realm {
+        return realm
     }
 }

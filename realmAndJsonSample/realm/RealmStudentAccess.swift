@@ -36,32 +36,39 @@ class RealmStudentAccess: Object  {
     "studentId": "1"
     }
     """
+
     
-    func accessRealmManager() {
-        insertRealmManagerFromJson()
-        insertRealmManagerForSudent(jsonStr: dataStudentStr1)
-        insertRealmManagerForSudent(jsonStr: dataStudentStr2)
-        updateRealmManagerForStudent()
-        filterRealmManagerForStudent()
-        deleteRealmManagerForStudent()
+    /**
+     レコード追加(from json)
+     */
+    func insertRealmManagerFromJson2(_ url: URL) {
+       print("\(#function) start")
+        let manager = RealmBaseDao<Student2> ()
+        do {
+            let data = try Data(contentsOf: url)
+            let obj = try JSONDecoder().decode(Student2.self, from: data)
+            try manager.add(obj: obj)
+            let student = manager.findLast()
+            print("add => findLast1 after:" + (student?.description ?? "not found")   )
+        } catch {
+            print("error:\(error)")
+        }
         
     }
     
     /**
      レコード追加(from json)
      */
-    func insertRealmManagerFromJson() {
-        let fileName = "student"
-        guard let url = Bundle.main.url(forResource: fileName, withExtension: "json") else {
-            return
-        }
+    func insertRealmManagerFromJson1(_ url: URL) {
+        print("\(#function) start")
+        
         let manager = RealmBaseDao<Student> ()
         do {
             let data = try Data(contentsOf: url)
             let obj = try JSONDecoder().decode(Student.self, from: data)
-            try manager.add(obj: obj)
+            try manager.addOrUpdate(obj: obj)
             let student = manager.findLast()
-            print("add => findLast after:" + (student?.description ?? "not found")   )
+            print("add => findLast2 after:" + (student?.description ?? "not found")   )
         } catch {
             print("error:\(error)")
         }
@@ -81,9 +88,9 @@ class RealmStudentAccess: Object  {
                 throw NSError(domain: "error data failure", code: -1, userInfo: nil)
             }
             let obj = try JSONDecoder().decode(Student.self, from: data)
-            manager.add(obj: obj)
+            try manager.add(obj: obj)
             let student = manager.findLast()
-            print("add => findLast after:" + (student?.description ?? "not found")   )
+            print("add => findLast3 after:" + (student?.description ?? "not found")   )
         }  catch let error as NSError {
             // If the encryption key is wrong, `error` will say that it's an invalid database
             fatalError("Error add realm: \(error)")
@@ -91,6 +98,38 @@ class RealmStudentAccess: Object  {
         print("\(#function) end")
         
     }
+    /**
+     レコード更新
+     */
+    func updateRealmManagerForStudent2() {
+        print("\(#function) start")
+        do {
+            let manager = RealmBaseDao<Student> ()
+            //1.read
+            let student = manager.findFirst()
+//            guard let student = result else {
+//                print("findFirst result2 not found")
+//                throw NSError(domain: "error not found", code: -1, userInfo: nil)
+//            }
+            print("1.read => findFirst before:" + (student?.description ?? "none")  )
+            
+            //2.Update
+            //manager.update(obj: student)
+            try manager.getRealm().write {
+                student?.name = "test"
+                student?.age = 20
+            }
+            
+            let student3 = manager.findFirst()
+            print("3.read => findFirst student3:" + (student3?.description ?? "none") )
+            
+        }  catch let error as NSError {
+            // If the encryption key is wrong, `error` will say that it's an invalid database
+            fatalError("Error update realm: \(error)")
+        }
+        print("\(#function) end")
+    }
+    
     /**
      レコード更新
      */
@@ -114,7 +153,12 @@ class RealmStudentAccess: Object  {
             }
             
             let student3 = manager.findFirst()
-            print("3.read => findFirst student3:" + (student3?.description ?? "none") )
+            manager.update(obj: student) {
+                student3?.age = 20
+            }
+            
+            
+            //print("3.read => findFirst student3:" + (student3?.description ?? "none") )
             
         }  catch let error as NSError {
             // If the encryption key is wrong, `error` will say that it's an invalid database
