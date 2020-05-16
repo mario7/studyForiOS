@@ -100,15 +100,15 @@ class RealmBaseDao <T: RealmSwift.Object> {
         }
     }
 
+    func updateOnly(block: @escaping () -> Void ) throws {
+        try realm.write(block)
+    }
     /**
     * T: RealmSwift.Object で primaryKey()が実装されている時のみ有効
     */
-    func update(obj: T, block:(() -> Void)? = nil)  {
+    func update( block:@escaping () -> Void)  {
         do {
-            try realm.write {
-                block?()
-                realm.add(obj, update: .modified)
-            }
+            try realm.write (block)
             
         } catch let error as NSError {
             print(error.description)

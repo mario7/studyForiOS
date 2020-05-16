@@ -60,8 +60,8 @@ class WeatherAccess {
             return
         }
         
-        object.created = date
-        
-        let _ = dao.update(obj: object)
+        let _ = dao.update()  {
+            object.created = date
+        }
     }
 }

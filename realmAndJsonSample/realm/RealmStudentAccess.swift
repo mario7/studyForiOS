@@ -146,14 +146,14 @@ class RealmStudentAccess: Object  {
             print("1.read => findFirst before:" + student.description  )
             
             //2.Update
-            manager.update(obj: student) {
+            manager.update() {
                 student.name = "test"
                 student.age = 20
                 print("2.update => findFirst updateStudent:" + student.description  )
             }
             
             let student3 = manager.findFirst()
-            manager.update(obj: student) {
+            manager.update() {
                 student3?.age = 20
             }
             
