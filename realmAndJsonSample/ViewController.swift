@@ -13,11 +13,11 @@ extension Double {
     
     //degree to radian
     func getRadian() -> CGFloat {
-        return CGFloat((self * .pi ) / 180.0)
+        return CGFloat(self * (.pi / 180.0))
     }
     
     func getDegree() -> CGFloat {
-        return  CGFloat((self * 180) / .pi)
+        return  CGFloat(self * (180.0 / .pi))
     }
 }
 
@@ -29,6 +29,9 @@ class ViewController: UIViewController {
     let radius = CGFloat(100.0)
     
     let colorPath = UIBezierPath()
+    
+    var touchStart =  CGPoint(x: 0.0, y: 0.0)
+    var touchEnd =  CGPoint(x: 0.0, y: 0.0)
     
     @IBOutlet weak var startTextField: UITextField!
     @IBOutlet weak var endTextField: UITextField!
@@ -48,6 +51,54 @@ class ViewController: UIViewController {
         endTextField.delegate = self
         
         drawCirclesCustom(startDegree: String(startDegree), endDegree: String(endDegree))
+        
+    }
+    
+    func addTabGesture() {
+        let touchGesture = UITapGestureRecognizer(target: self, action: #selector(self.touchAction))
+        circleView.addGestureRecognizer(touchGesture)
+    }
+    
+    @objc func touchAction(_ sender: UITapGestureRecognizer) {
+        print("\(#function) start ")
+    }
+    
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        for touch in touches {
+            let location = touch.location(in: circleView)
+            if (location.x != touchStart.x && location.y != touchStart.y ) {
+                touchStart =  CGPoint(x:location.x , y: location.y)
+                print("\(#function) \(touchStart.debugDescription) ")
+            }
+        }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        for touch in touches {
+            
+            let location = touch.location(in: circleView)
+            if (location.x != touchEnd.x && location.y != touchEnd.y ) {
+                touchEnd =  CGPoint(x:location.x , y: location.y)
+                print("\(#function) \(touchEnd.debugDescription) ")
+            }
+        }
+       _ =  calcDegreeFromTouchLocation()
+    }
+    
+    func calcDegreeFromTouchLocation() -> CGFloat {
+        
+        print("\(#function) start:\(touchStart.debugDescription) , end: \(touchEnd.debugDescription) ")
+        
+        let  diffX = abs(touchStart.x - touchEnd.x)
+        let  diffY = abs(touchStart.y - touchEnd.y)
+        let radians = Double(atan2(diffX, diffY))
+        let degree = radians.getDegree()
+        
+        print("\(#function) radians = \(radians) ,degree = \(degree)")
+        return degree
     }
     
     func drawCirclesBase() {
@@ -197,15 +248,12 @@ class ViewController: UIViewController {
         var result = 0.0
         
         if isPlus {
-            result = value + unit
-            if result >= 360.0 { result = 360.0 }
+            result = min(value + unit, 360.0)
         } else {
-            result = value - unit
-            if result <= 0.0 { result = 0.0 }
+            result = max(value - unit, 0.0)
         }
     
         return String(result)
-        
     }
 
 }
