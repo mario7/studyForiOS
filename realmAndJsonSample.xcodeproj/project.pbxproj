@@ -17,6 +17,11 @@
 		037A2E02243CB17000A6AE28 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 037A2E00243CB17000A6AE28 /* LaunchScreen.storyboard */; };
 		037A2E0D243CB17000A6AE28 /* realmAndJsonSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037A2E0C243CB17000A6AE28 /* realmAndJsonSampleTests.swift */; };
 		037A2E18243CB17000A6AE28 /* realmAndJsonSampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037A2E17243CB17000A6AE28 /* realmAndJsonSampleUITests.swift */; };
+		0392247E2472C71E00246E3D /* InputBarAccessoryView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0392247C2472C71E00246E3D /* InputBarAccessoryView.framework */; };
+		0392247F2472C71E00246E3D /* MessageKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0392247D2472C71E00246E3D /* MessageKit.framework */; };
+		039224822472C89C00246E3D /* Message.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 039224802472C89C00246E3D /* Message.storyboard */; };
+		039224852472C95200246E3D /* MessageSampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039224842472C95200246E3D /* MessageSampleViewController.swift */; };
+		039224872472C9B800246E3D /* MockMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039224862472C9B800246E3D /* MockMessage.swift */; };
 		03DA3E9A244195FF00C6C4C4 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03DA3E99244195FF00C6C4C4 /* Realm.framework */; };
 		03DA3E9C2441961300C6C4C4 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03DA3E9B2441961300C6C4C4 /* RealmSwift.framework */; };
 		03E52CE1245003F300C79080 /* RealmBaseDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E52CE0245003F300C79080 /* RealmBaseDao.swift */; };
@@ -63,6 +68,11 @@
 		037A2E13243CB17000A6AE28 /* realmAndJsonSampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = realmAndJsonSampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		037A2E17243CB17000A6AE28 /* realmAndJsonSampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = realmAndJsonSampleUITests.swift; sourceTree = "<group>"; };
 		037A2E19243CB17000A6AE28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0392247C2472C71E00246E3D /* InputBarAccessoryView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InputBarAccessoryView.framework; path = Carthage/Build/iOS/InputBarAccessoryView.framework; sourceTree = "<group>"; };
+		0392247D2472C71E00246E3D /* MessageKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageKit.framework; path = Carthage/Build/iOS/MessageKit.framework; sourceTree = "<group>"; };
+		039224812472C89C00246E3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = realmAndJsonSample/Base.lproj/Message.storyboard; sourceTree = "<group>"; };
+		039224842472C95200246E3D /* MessageSampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSampleViewController.swift; sourceTree = "<group>"; };
+		039224862472C9B800246E3D /* MockMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMessage.swift; sourceTree = "<group>"; };
 		03DA3E99244195FF00C6C4C4 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		03DA3E9B2441961300C6C4C4 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 		03E52CE0245003F300C79080 /* RealmBaseDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBaseDao.swift; sourceTree = "<group>"; };
@@ -77,6 +87,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0392247E2472C71E00246E3D /* InputBarAccessoryView.framework in Frameworks */,
+				0392247F2472C71E00246E3D /* MessageKit.framework in Frameworks */,
 				030D0F922462995A00567758 /* CryptoSwift.framework in Frameworks */,
 				03DA3E9C2441961300C6C4C4 /* RealmSwift.framework in Frameworks */,
 				03DA3E9A244195FF00C6C4C4 /* Realm.framework in Frameworks */,
@@ -124,10 +136,12 @@
 		037A2DF4243CB17000A6AE28 /* realmAndJsonSample */ = {
 			isa = PBXGroup;
 			children = (
+				039224832472C8E900246E3D /* message */,
 				03F84E9D2451DFBF007701FB /* realm */,
 				037A2DF5243CB17000A6AE28 /* AppDelegate.swift */,
 				037A2DF7243CB17000A6AE28 /* SceneDelegate.swift */,
 				037A2DF9243CB17000A6AE28 /* ViewController.swift */,
+				039224802472C89C00246E3D /* Message.storyboard */,
 				037A2DFB243CB17000A6AE28 /* Main.storyboard */,
 				037A2DFE243CB17000A6AE28 /* Assets.xcassets */,
 				037A2E00243CB17000A6AE28 /* LaunchScreen.storyboard */,
@@ -154,9 +168,20 @@
 			path = realmAndJsonSampleUITests;
 			sourceTree = "<group>";
 		};
+		039224832472C8E900246E3D /* message */ = {
+			isa = PBXGroup;
+			children = (
+				039224842472C95200246E3D /* MessageSampleViewController.swift */,
+				039224862472C9B800246E3D /* MockMessage.swift */,
+			);
+			path = message;
+			sourceTree = "<group>";
+		};
 		03DA3E98244195FF00C6C4C4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0392247C2472C71E00246E3D /* InputBarAccessoryView.framework */,
+				0392247D2472C71E00246E3D /* MessageKit.framework */,
 				030D0F9524629C5800567758 /* GooglePlaces.framework */,
 				030D0F8E246295C600567758 /* CryptoSwift.framework */,
 				030D0F902462995A00567758 /* CryptoSwift.framework */,
@@ -287,6 +312,7 @@
 			files = (
 				037A2E02243CB17000A6AE28 /* LaunchScreen.storyboard in Resources */,
 				037A2DFF243CB17000A6AE28 /* Assets.xcassets in Resources */,
+				039224822472C89C00246E3D /* Message.storyboard in Resources */,
 				037A2DFD243CB17000A6AE28 /* Main.storyboard in Resources */,
 				03F84EA32455C979007701FB /* student.json in Resources */,
 			);
@@ -320,6 +346,8 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/CryptoSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/MessageKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/InputBarAccessoryView.framework",
 			);
 			name = "Realm Run Script";
 			outputFileListPaths = (
@@ -338,12 +366,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				037A2DFA243CB17000A6AE28 /* ViewController.swift in Sources */,
+				039224872472C9B800246E3D /* MockMessage.swift in Sources */,
 				03E52CE1245003F300C79080 /* RealmBaseDao.swift in Sources */,
 				030D0F98246FF15600567758 /* RealmSampleAccessor.swift in Sources */,
 				037A2DF6243CB17000A6AE28 /* AppDelegate.swift in Sources */,
 				037A2DF8243CB17000A6AE28 /* SceneDelegate.swift in Sources */,
 				03E52CE324500C0400C79080 /* SampleObjectAccess.swift in Sources */,
 				03F84E9C2451DF99007701FB /* Student.swift in Sources */,
+				039224852472C95200246E3D /* MessageSampleViewController.swift in Sources */,
 				03F84EA52459B6B3007701FB /* RealmStudentAccess.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -394,6 +424,14 @@
 				037A2E01243CB17000A6AE28 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		039224802472C89C00246E3D /* Message.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				039224812472C89C00246E3D /* Base */,
+			);
+			name = Message.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
