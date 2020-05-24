@@ -134,6 +134,16 @@
                                     <constraint firstAttribute="width" secondItem="aKS-Rt-DhS" secondAttribute="height" multiplier="1:1" id="0Xg-is-9C3"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h8X-fh-0gS">
+                                <rect key="frame" x="186" y="568.5" width="42" height="30"/>
+                                <state key="normal" title="image"/>
+                                <connections>
+                                    <action selector="touchedImagePicker:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xT0-OC-lPU"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="f6a-CP-6Bb">
+                                <rect key="frame" x="76" y="618.5" width="262" height="227.5"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -141,9 +151,14 @@
                             <constraint firstItem="loH-lB-XN8" firstAttribute="leading" secondItem="PSU-oT-0UB" secondAttribute="trailing" constant="15" id="1Vf-iL-z5T"/>
                             <constraint firstItem="loH-lB-XN8" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="19" id="2ZM-zU-Jga"/>
                             <constraint firstItem="aKS-Rt-DhS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="5Qn-Ll-feD"/>
+                            <constraint firstItem="f6a-CP-6Bb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="76" id="6wg-lj-DWW"/>
                             <constraint firstItem="aKS-Rt-DhS" firstAttribute="top" secondItem="PSU-oT-0UB" secondAttribute="bottom" constant="40.5" id="Bam-Vg-Bkn"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="h8X-fh-0gS" secondAttribute="trailing" constant="186" id="Iyq-Xm-9km"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="aKS-Rt-DhS" secondAttribute="trailing" constant="10" id="N3U-AH-20k"/>
+                            <constraint firstItem="h8X-fh-0gS" firstAttribute="top" secondItem="aKS-Rt-DhS" secondAttribute="bottom" constant="40" id="NCh-ku-dDh"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="f6a-CP-6Bb" secondAttribute="trailing" constant="76" id="PA0-R0-7tE"/>
                             <constraint firstItem="PSU-oT-0UB" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="SXu-3E-DyH"/>
+                            <constraint firstItem="f6a-CP-6Bb" firstAttribute="top" secondItem="h8X-fh-0gS" secondAttribute="bottom" constant="20" id="Tpp-Uk-12g"/>
                             <constraint firstItem="loH-lB-XN8" firstAttribute="width" secondItem="t25-yU-jJ3" secondAttribute="width" id="V2X-pM-5Ud"/>
                             <constraint firstItem="t25-yU-jJ3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="VGX-6V-1dv"/>
                             <constraint firstItem="aNE-ox-mRS" firstAttribute="top" secondItem="loH-lB-XN8" secondAttribute="top" id="X5X-cN-ddp"/>
@@ -152,16 +167,20 @@
                             <constraint firstItem="PSU-oT-0UB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dGZ-RP-o6R"/>
                             <constraint firstItem="5Gw-M6-iRB" firstAttribute="top" secondItem="t25-yU-jJ3" secondAttribute="top" id="fnl-pQ-Yd3"/>
                             <constraint firstItem="aNE-ox-mRS" firstAttribute="width" secondItem="loH-lB-XN8" secondAttribute="width" id="jhY-Gc-ruf"/>
+                            <constraint firstItem="f6a-CP-6Bb" firstAttribute="top" secondItem="h8X-fh-0gS" secondAttribute="bottom" constant="20" id="lEQ-Jc-cp1"/>
                             <constraint firstItem="aNE-ox-mRS" firstAttribute="trailing" secondItem="loH-lB-XN8" secondAttribute="trailing" id="ran-xr-sU9"/>
                             <constraint firstItem="5Gw-M6-iRB" firstAttribute="leading" secondItem="t25-yU-jJ3" secondAttribute="leading" id="soK-D8-CrX"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="f6a-CP-6Bb" secondAttribute="bottom" constant="16" id="tnb-OA-bGe"/>
                             <constraint firstItem="loH-lB-XN8" firstAttribute="height" secondItem="t25-yU-jJ3" secondAttribute="height" id="u9n-YP-2Li"/>
                             <constraint firstItem="aNE-ox-mRS" firstAttribute="height" secondItem="loH-lB-XN8" secondAttribute="height" id="ygN-Da-cx4"/>
+                            <constraint firstItem="h8X-fh-0gS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="186" id="zt4-ld-0LE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="circleView" destination="aKS-Rt-DhS" id="oa1-UN-ihk"/>
                         <outlet property="endTextField" destination="55n-l8-p3c" id="Ej9-Vu-V8X"/>
+                        <outlet property="imageView" destination="f6a-CP-6Bb" id="jTX-9E-dKK"/>
                         <outlet property="startTextField" destination="qc8-U1-tHh" id="RUh-sJ-kTG"/>
                     </connections>
                 </viewController>

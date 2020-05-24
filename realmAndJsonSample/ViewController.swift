@@ -36,6 +36,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var startTextField: UITextField!
     @IBOutlet weak var endTextField: UITextField!
     @IBOutlet weak var circleView: UIView!
+    @IBOutlet weak var imageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -238,6 +239,16 @@ class ViewController: UIViewController {
     @IBAction func touchedEndMinus(_ button: UIButton) {
         endTextField.text = changeTextFieldValue(endTextField.text, isPlus: false)
         refreshCircle()
+    }
+    
+    @IBAction func touchedImagePicker(_ button: UIButton) {
+       let imageVc =  ImagePickerViewController()
+        self.present(imageVc, animated: true) {
+            guard let selectedImage = imageVc.selectedImage else {
+                return
+            }
+            self.imageView.image = selectedImage
+        }
     }
     
     func changeTextFieldValue(_ valueStr: String?, isPlus: Bool) -> String {

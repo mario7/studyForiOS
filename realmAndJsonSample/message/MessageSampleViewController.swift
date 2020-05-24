@@ -16,6 +16,8 @@ class MessageSampleViewController: MessagesViewController {
     var msgInfos = [String]()
     var currentUserInfo = ("","")
     var sendUserInfo = ("","")
+    var picker = UIImagePickerController()
+    var selectedImage: UIImage?
     
     lazy var formatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -60,9 +62,8 @@ class MessageSampleViewController: MessagesViewController {
         messageInputBar.setStackViewItems(items, forStack: .left, animated: false)
         messageInputBar.setLeftStackViewWidthConstant(to: 45, animated: false)
         
-        
         // メッセージ入力時に一番下までスクロール
-        //scrollsToBottomOnKeybordBeginsEditing = true // default false
+        scrollsToBottomOnKeyboardBeginsEditing = true // default false
         maintainPositionOnKeyboardFrameChanged = true // default false
     }
     
@@ -73,7 +74,7 @@ class MessageSampleViewController: MessagesViewController {
     // ボタンの作成
     func makeButton(named: String) -> InputBarButtonItem {
         return InputBarButtonItem()
-            .configure {
+        .configure {
                 $0.spacing = .fixed(10)
                 $0.image = UIImage(named: named)?.withRenderingMode(.alwaysTemplate)
                 $0.setSize(CGSize(width: 30, height: 30), animated: true)
@@ -83,6 +84,7 @@ class MessageSampleViewController: MessagesViewController {
             $0.tintColor = UIColor.lightGray
         }.onTouchUpInside { button in
             //messageInputBar.didSelectSendButton()
+            
             self.inputMessageWith(self.messageInputBar, didPressSendButtonWith: "image")
         }
     }
@@ -103,6 +105,37 @@ class MessageSampleViewController: MessagesViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func showImagePicker() {
+
+        //PhotoLibraryから画像を選択
+        picker.sourceType = UIImagePickerController.SourceType.photoLibrary
+        
+        //デリゲートを設定する
+        picker.delegate = self
+        
+        //現れるピッカーNavigationBarの文字色を設定する
+        picker.navigationBar.tintColor = UIColor.white
+        
+        //現れるピッカーNavigationBarの背景色を設定する
+        picker.navigationBar.barTintColor = UIColor.gray
+        
+        //ピッカーを表示する
+        present(picker, animated: true, completion: {
+                //self.sendImageMessageIfImageSected()
+            }
+        )
+    }
+    
+    func  sendImageMessageIfImageSected()  {
+        guard let image = self.selectedImage else {
+            return
+        }
+        let imageMessage = MockMessage(image: image, sender: currentSender() as! Sender, messageId: UUID().uuidString, date: Date())
+        messageList.append(imageMessage)
+        messagesCollectionView.insertSections([messageList.count - 1])
+
     }
 }
 
@@ -207,7 +240,9 @@ extension MessageSampleViewController: MessageCellDelegate {
 extension MessageSampleViewController: MessageInputBarDelegate {
     // メッセージ送信ボタンをタップした時の挙動
     func inputMessageWith(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
-        for component in inputBar.inputTextView.components {
+        let components = inputBar.inputTextView.components
+        
+        for component in components {
             if let image = component as? UIImage {
                 
                 let imageMessage = MockMessage(image: image, sender: currentSender() as! Sender, messageId: UUID().uuidString, date: Date())
@@ -226,4 +261,37 @@ extension MessageSampleViewController: MessageInputBarDelegate {
         inputBar.inputTextView.text = String()
         messagesCollectionView.scrollToBottom()
     }
+}
+
+extension MessageSampleViewController: UIImagePickerControllerDelegate {
+    //UIImagePickerControllerのデリゲートメソッド
+    
+    //画像が選択された時に呼ばれる.
+    internal func imagePickerController(_ picker: UIImagePickerController,
+                                        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.originalImage] as? UIImage else {
+            
+            print("Error")
+            return
+        }
+        
+        //ボタンの背景に選択した画像を設定
+        //imagePickUpButton.setBackgroundImage(image, for: UIControl.State.normal)
+        selectedImage = image
+        self.sendImageMessageIfImageSected()
+        
+        // モーダルビューを閉じる
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+     //画像選択がキャンセルされた時に呼ばれる.
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        
+        // モーダルビューを閉じる
+        self.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension MessageSampleViewController: UINavigationControllerDelegate {
+
 }
