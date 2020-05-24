@@ -33,6 +33,8 @@ class ViewController: UIViewController {
     var touchStart =  CGPoint(x: 0.0, y: 0.0)
     var touchEnd =  CGPoint(x: 0.0, y: 0.0)
     
+    var imageVc =  ImagePickerViewController()
+    
     @IBOutlet weak var startTextField: UITextField!
     @IBOutlet weak var endTextField: UITextField!
     @IBOutlet weak var circleView: UIView!
@@ -53,6 +55,10 @@ class ViewController: UIViewController {
         
         drawCirclesCustom(startDegree: String(startDegree), endDegree: String(endDegree))
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
     }
     
     func addTabGesture() {
@@ -242,13 +248,10 @@ class ViewController: UIViewController {
     }
     
     @IBAction func touchedImagePicker(_ button: UIButton) {
-       let imageVc =  ImagePickerViewController()
-        self.present(imageVc, animated: true) {
-            guard let selectedImage = imageVc.selectedImage else {
-                return
-            }
-            self.imageView.image = selectedImage
-        }
+        self.imageVc =  ImagePickerViewController()
+        imageVc.delegate = self
+        self.present(imageVc, animated: true, completion: nil)
+        
     }
     
     func changeTextFieldValue(_ valueStr: String?, isPlus: Bool) -> String {
@@ -285,3 +288,13 @@ extension ViewController: UITextFieldDelegate {
     }
 }
 
+
+extension ViewController: MessageSendProtocol {
+    func sendImageMessage(image: UIImage?) {
+//        guard let image = image else {
+//            return
+//        }
+        self.imageView.image = image
+    }
+
+}

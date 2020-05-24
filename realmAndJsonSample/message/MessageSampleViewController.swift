@@ -128,14 +128,14 @@ class MessageSampleViewController: MessagesViewController {
         )
     }
     
-    func  sendImageMessageIfImageSected()  {
+    func  sendImageMessageIfImageSected() -> Bool  {
         guard let image = self.selectedImage else {
-            return
+            return false
         }
         let imageMessage = MockMessage(image: image, sender: currentSender() as! Sender, messageId: UUID().uuidString, date: Date())
         messageList.append(imageMessage)
         messagesCollectionView.insertSections([messageList.count - 1])
-
+        return true
     }
 }
 
@@ -278,7 +278,7 @@ extension MessageSampleViewController: UIImagePickerControllerDelegate {
         //ボタンの背景に選択した画像を設定
         //imagePickUpButton.setBackgroundImage(image, for: UIControl.State.normal)
         selectedImage = image
-        self.sendImageMessageIfImageSected()
+        
         
         // モーダルビューを閉じる
         self.dismiss(animated: true, completion: nil)
@@ -295,3 +295,22 @@ extension MessageSampleViewController: UIImagePickerControllerDelegate {
 extension MessageSampleViewController: UINavigationControllerDelegate {
 
 }
+
+extension MessageSampleViewController: MessageSendProtocol {
+    func sendImageMessage(image: UIImage?) {
+        
+    }
+    
+    
+    
+//    func getImageMessage(result: @escaping (Bool, UIImage?) -> Void) {
+//        guard let image = self.selectedImage else {
+//            result(false, nil)
+//            return
+//        }
+//
+//        result(true, image )
+//    }
+
+}
+

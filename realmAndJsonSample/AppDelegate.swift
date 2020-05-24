@@ -11,12 +11,21 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var backgroundTaskID : UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier(rawValue: 0)
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         accessRealmMangagerNormal()
         //accessRealmManagerWithPrimaryKey()
         return true
+    }
+    
+    private func applicationWillResignActive(application: UIApplication) {
+        self.backgroundTaskID = application.beginBackgroundTask(){
+            [weak self] in
+            application.endBackgroundTask((self?.backgroundTaskID)!)
+            self?.backgroundTaskID = UIBackgroundTaskIdentifier.invalid
+        }
     }
 
     func accessRealmMangagerNormal() {

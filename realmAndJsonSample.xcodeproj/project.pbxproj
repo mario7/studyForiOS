@@ -77,6 +77,7 @@
 		039224862472C9B800246E3D /* MockMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMessage.swift; sourceTree = "<group>"; };
 		039224882477ED2200246E3D /* ImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
 		0392248A247934CB00246E3D /* MessageSendProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSendProtocol.swift; sourceTree = "<group>"; };
+		0392248C247A677200246E3D /* 3294758.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = 3294758.gpx; path = ../../../Downloads/3294758.gpx; sourceTree = "<group>"; };
 		03DA3E99244195FF00C6C4C4 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		03DA3E9B2441961300C6C4C4 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 		03E52CE0245003F300C79080 /* RealmBaseDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBaseDao.swift; sourceTree = "<group>"; };
@@ -119,6 +120,7 @@
 		037A2DE9243CB17000A6AE28 = {
 			isa = PBXGroup;
 			children = (
+				0392248C247A677200246E3D /* 3294758.gpx */,
 				037A2DF4243CB17000A6AE28 /* realmAndJsonSample */,
 				037A2E0B243CB17000A6AE28 /* realmAndJsonSampleTests */,
 				037A2E16243CB17000A6AE28 /* realmAndJsonSampleUITests */,

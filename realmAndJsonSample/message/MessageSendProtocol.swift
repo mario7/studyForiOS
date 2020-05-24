@@ -7,7 +7,14 @@
 //
 
 import Foundation
+import UIKit
 
 protocol MessageSendProtocol {
-    //func sendImageMessage(result: Result<Bool,image: UIImage>)
+    func sendImageMessage(image: UIImage?)
+    func getImageMessage(result: @escaping (Bool, String?) -> Void)
+}
+extension MessageSendProtocol {
+    func getImageMessage(result: @escaping (Bool, String?) -> Void) {
+        result(false, nil)
+    }
 }

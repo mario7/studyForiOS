@@ -14,6 +14,7 @@ class ImagePickerViewController: UIViewController, UIImagePickerControllerDelega
     var imagePickUpButton:UIButton = UIButton()
     var picker: UIImagePickerController! = UIImagePickerController()
     var selectedImage: UIImage?
+    var delegate: MessageSendProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,10 @@ class ImagePickerViewController: UIViewController, UIImagePickerControllerDelega
 //        imagePickUpButton.setTitle("Toupe Me!!", for: UIControl.State.normal)
 //        self.view.addSubview(imagePickUpButton)
         showImagePicker()
+    }
+    
+    deinit {
+        delegate = nil
     }
     
     //basicボタンが押されたら呼ばれます
@@ -64,6 +69,7 @@ class ImagePickerViewController: UIViewController, UIImagePickerControllerDelega
         //ボタンの背景に選択した画像を設定
         //imagePickUpButton.setBackgroundImage(image, for: UIControl.State.normal)
         
+        delegate?.sendImageMessage(image: selectedImage)
         // モーダルビューを閉じる
         self.dismiss(animated: true, completion: nil)
     }
