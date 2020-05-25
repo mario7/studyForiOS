@@ -32,6 +32,12 @@ class MessageSampleViewController: MessagesViewController {
         currentUserInfo = ("123","deliveryMan")
         sendUserInfo = ("456","Guest")
         
+        initMessageCollectionVc()
+        initMessageInput()
+    }
+    
+    func initMessageCollectionVc() {
+        
         DispatchQueue.main.async {
             // messageListにメッセージの配列をいれて
             self.messageList = self.getMessages()
@@ -48,16 +54,18 @@ class MessageSampleViewController: MessagesViewController {
         
         messageInputBar.delegate = self
         messageInputBar.sendButton.tintColor = UIColor.lightGray
+        messageInputBar.sendButton.image = UIImage(named: "send")
         messageInputBar.sendButton.addTarget(self, action: #selector(sendMessage), for: UIControl.Event.touchUpInside)
-        
+    }
+    
+    @objc func sendMessage(_ sender: UIButton) {
+        inputMessageWith(messageInputBar, didPressSendButtonWith: "send")
+    }
+    
+    func initMessageInput() {
         // メッセージ入力欄の左に画像選択ボタンを追加
-        // 画像選択とかしたいときに
-        let items = [
-            makeButton(named: "screenshot").onTextViewDidChange { button, textView in
-                button.tintColor = UIColor.lightGray
-                button.isEnabled = textView.text.isEmpty
-            }
-        ]
+        // 画像選択などなど追加
+        let items = [makeImageButton()]
         items.forEach { $0.tintColor = .lightGray }
         messageInputBar.setStackViewItems(items, forStack: .left, animated: false)
         messageInputBar.setLeftStackViewWidthConstant(to: 45, animated: false)
@@ -67,25 +75,41 @@ class MessageSampleViewController: MessagesViewController {
         maintainPositionOnKeyboardFrameChanged = true // default false
     }
     
-    @objc func sendMessage(_ sender: UIButton) {
-        inputMessageWith(messageInputBar, didPressSendButtonWith: "send")
-    }
-    
     // ボタンの作成
     func makeButton(named: String) -> InputBarButtonItem {
         return InputBarButtonItem()
         .configure {
-                $0.spacing = .fixed(10)
+                $0.spacing = .fixed(2)
                 $0.image = UIImage(named: named)?.withRenderingMode(.alwaysTemplate)
-                $0.setSize(CGSize(width: 30, height: 30), animated: true)
+                $0.setSize(CGSize(width: 20, height: 40), animated: true)
         }.onSelected {
             $0.tintColor = UIColor.gray
         }.onDeselected {
             $0.tintColor = UIColor.lightGray
-        }.onTouchUpInside { button in
-            //messageInputBar.didSelectSendButton()
+        }
+    }
+    
+    func makeImageButton() -> InputBarButtonItem {
+       return makeButton(named: "screenshot")
+            .onTextViewDidChange { button, textView in
+            button.tintColor = UIColor.lightGray
+            button.isEnabled = textView.text.isEmpty
+            
+        }.onTouchUpInside { [weak self] button in
             //self.inputMessageWith(self.messageInputBar, didPressSendButtonWith: "image")
-            self.showImagePicker()
+            self?.showImagePicker()
+        }
+    }
+    
+    func makeFixMessageButton() -> InputBarButtonItem {
+        makeButton(named: "fix_image")
+            .onTextViewDidChange { button, textView in
+            button.tintColor = UIColor.lightGray
+            button.isEnabled = textView.text.isEmpty
+            
+        }.onTouchUpInside { [weak self] button in
+            //self.inputMessageWith(self.messageInputBar, didPressSendButtonWith: "fix")
+            self?.showFixSentenceTableView()
         }
     }
     
@@ -105,6 +129,17 @@ class MessageSampleViewController: MessagesViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func showFixSentenceTableView() {
+        
+        let storyboard = UIStoryboard(name: "Message", bundle: nil)
+        guard let tableVc = storyboard.instantiateViewController(withIdentifier: "FixSentenseTableVC") as? FixSentenseTableViewController else {
+            return
+        }
+        tableVc.delegate = self
+        self.present(tableVc, animated: true, completion: nil)
+        
     }
     
     func showImagePicker() {
@@ -281,8 +316,8 @@ extension MessageSampleViewController: UIImagePickerControllerDelegate {
         
         
         // モーダルビューを閉じる
-        picker.dismiss(animated: true) {
-           _ = self.sendImageMessageIfImageSected()
+        picker.dismiss(animated: true) {  [weak self]  in
+           _ = self?.sendImageMessageIfImageSected()
         }
     }
     
@@ -298,3 +333,13 @@ extension MessageSampleViewController: UINavigationControllerDelegate {
 
 }
 
+extension MessageSampleViewController: MessageSendProtocol {
+
+    func sendFixMessage(message: String?) {
+        guard let message = message else {
+            return
+        }
+        messageInputBar.inputTextView.text = message
+        //inputMessageWith(messageInputBar, didPressSendButtonWith: "send")
+    }
+}

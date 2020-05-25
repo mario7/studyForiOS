@@ -11,9 +11,14 @@ import UIKit
 
 protocol MessageSendProtocol {
     func sendImageMessage(image: UIImage?)
+    func sendFixMessage(message: String?)
     func getImageMessage(result: @escaping (Bool, UIImage?) -> Void)
 }
 extension MessageSendProtocol {
+    
+    func sendFixMessage(message: String?) {
+        
+    }
     
     func sendImageMessage(image: UIImage?) {
         
