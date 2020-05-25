@@ -84,8 +84,8 @@ class MessageSampleViewController: MessagesViewController {
             $0.tintColor = UIColor.lightGray
         }.onTouchUpInside { button in
             //messageInputBar.didSelectSendButton()
-            
-            self.inputMessageWith(self.messageInputBar, didPressSendButtonWith: "image")
+            //self.inputMessageWith(self.messageInputBar, didPressSendButtonWith: "image")
+            self.showImagePicker()
         }
     }
     
@@ -281,36 +281,20 @@ extension MessageSampleViewController: UIImagePickerControllerDelegate {
         
         
         // モーダルビューを閉じる
-        self.dismiss(animated: true, completion: nil)
+        picker.dismiss(animated: true) {
+           _ = self.sendImageMessageIfImageSected()
+        }
     }
     
      //画像選択がキャンセルされた時に呼ばれる.
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         
         // モーダルビューを閉じる
-        self.dismiss(animated: true, completion: nil)
+        picker.dismiss(animated: true, completion: nil)
     }
 }
 
 extension MessageSampleViewController: UINavigationControllerDelegate {
-
-}
-
-extension MessageSampleViewController: MessageSendProtocol {
-    func sendImageMessage(image: UIImage?) {
-        
-    }
-    
-    
-    
-//    func getImageMessage(result: @escaping (Bool, UIImage?) -> Void) {
-//        guard let image = self.selectedImage else {
-//            result(false, nil)
-//            return
-//        }
-//
-//        result(true, image )
-//    }
 
 }
 

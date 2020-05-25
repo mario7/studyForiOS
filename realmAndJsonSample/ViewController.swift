@@ -291,9 +291,7 @@ extension ViewController: UITextFieldDelegate {
 
 extension ViewController: MessageSendProtocol {
     func sendImageMessage(image: UIImage?) {
-//        guard let image = image else {
-//            return
-//        }
+
         self.imageView.image = image
     }
 
