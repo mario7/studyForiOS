@@ -17,6 +17,7 @@ class MessageSampleViewController: MessagesViewController {
     var currentUserInfo = ("","")
     var sendUserInfo = ("","")
     var picker = UIImagePickerController()
+    var fixSentenseTableVc: FixSentenseTableViewController? = nil
     var selectedImage: UIImage?
     
     lazy var formatter: DateFormatter = {
@@ -137,9 +138,26 @@ class MessageSampleViewController: MessagesViewController {
         guard let tableVc = storyboard.instantiateViewController(withIdentifier: "FixSentenseTableVC") as? FixSentenseTableViewController else {
             return
         }
-        tableVc.delegate = self
-        self.present(tableVc, animated: true, completion: nil)
+        fixSentenseTableVc = tableVc
+        self.showCustomKeyboardViewDelayed()
+        messageInputBar.inputTextView.becomeFirstResponder()
         
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+//            // your code here
+//            self?.showCustomKeyboardViewDelayed()
+//        }
+        
+    }
+    
+    func showCustomKeyboardViewDelayed() {
+        guard let tableVc = fixSentenseTableVc else {
+            return
+        }
+        tableVc.delegate = self
+        tableVc.view.translatesAutoresizingMaskIntoConstraints = false
+        tableVc.view.frame = CGRect(x: 0, y: 0, width: 320, height: 100)
+        //self.present(tableVc, animated: true, completion: nil)
+        messageInputBar.inputTextView.inputView = tableVc.view
     }
     
     func showImagePicker() {
@@ -157,10 +175,24 @@ class MessageSampleViewController: MessagesViewController {
         picker.navigationBar.barTintColor = UIColor.gray
         
         //ピッカーを表示する
-        present(picker, animated: true, completion: {
-                //self.sendImageMessageIfImageSected()
-            }
-        )
+//        present(picker, animated: true, completion: {
+//                //self.sendImageMessageIfImageSected()
+//            }
+//        )
+        self.showPickerKeyboardViewDelayed()
+        messageInputBar.inputTextView.becomeFirstResponder()
+        
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+//            // your code here
+//            self?.showPickerKeyboardViewDelayed()
+//        }
+        
+    }
+    
+    func showPickerKeyboardViewDelayed() {
+        picker.view.translatesAutoresizingMaskIntoConstraints = false
+        picker.view.frame = CGRect(x: 0, y: 0, width: 320, height: 100)
+        messageInputBar.inputTextView.inputView = picker.view
     }
     
     func  sendImageMessageIfImageSected() -> Bool  {
@@ -170,6 +202,8 @@ class MessageSampleViewController: MessagesViewController {
         let imageMessage = MockMessage(image: image, sender: currentSender() as! Sender, messageId: UUID().uuidString, date: Date())
         messageList.append(imageMessage)
         messagesCollectionView.insertSections([messageList.count - 1])
+        messageInputBar.inputTextView.resignFirstResponder()
+        messageInputBar.inputTextView.keyboardType = .default
         return true
     }
 }
@@ -295,6 +329,8 @@ extension MessageSampleViewController: MessageInputBarDelegate {
         }
         inputBar.inputTextView.text = String()
         messagesCollectionView.scrollToBottom()
+        messageInputBar.inputTextView.resignFirstResponder()
+        messageInputBar.inputTextView.keyboardType = .default
     }
 }
 
@@ -326,6 +362,8 @@ extension MessageSampleViewController: UIImagePickerControllerDelegate {
         
         // モーダルビューを閉じる
         picker.dismiss(animated: true, completion: nil)
+        messageInputBar.inputTextView.resignFirstResponder()
+        messageInputBar.inputTextView.keyboardType = .default
     }
 }
 
