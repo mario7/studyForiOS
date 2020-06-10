@@ -23,6 +23,7 @@ class MessageSampleViewController: MessagesViewController {
     lazy var formatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
+	formatter.timeStyle = .medium
         return formatter
     }()
     
