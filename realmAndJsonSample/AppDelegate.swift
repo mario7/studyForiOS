@@ -15,9 +15,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        accessRealmMangagerNormal()
+        confirmKeyPathType()
+        keyPathSortWithAge()
+        
+        //accessRealmMangagerNormal()
         //accessRealmManagerWithPrimaryKey()
         return true
+    }
+    
+     public func confirmKeyPathType() {
+        var studentModel = StudentModel()
+        //keyPath 設定
+        let nameKeyPath = \StudentModel.name
+        
+        print(" \(#function) keyPath type: \(String(describing: type(of: nameKeyPath)))")
+        // WritableKeyPath<User, String>
+        print(" \(#function) keyPath name before: \(studentModel.name)")
+        
+        studentModel[keyPath: nameKeyPath ] = "updated"
+        
+        print(" \(#function) keyPath name after: \(studentModel.name)")
+        
+    }
+    
+     public func keyPathSortWithAge() {
+        
+        let array =  [StudentModel(studentId: "003", name: "3", age: "10"),
+        StudentModel(studentId: "002", name: "1", age: "15"),
+        StudentModel(studentId: "001", name: "2", age: "20")]
+        
+        let results = array.sorted{ $0.age > $1.age }
+            
+         print(" \(#function) 1.sorted result: \(results) ")
+       
+        let results2 = array.sorted(by: \StudentModel.age)
+        
+         print(" \(#function) 2.sorted result: \(results2) ")
+        
+        let results3 = array.sorted(by: \StudentModel.studentId)
+        
+         print(" \(#function) 3.sorted result: \(results3) ")
     }
     
     private func applicationWillResignActive(application: UIApplication) {

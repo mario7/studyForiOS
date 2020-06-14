@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		030D0F922462995A00567758 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 030D0F902462995A00567758 /* CryptoSwift.framework */; };
 		030D0F98246FF15600567758 /* RealmSampleAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030D0F97246FF15600567758 /* RealmSampleAccessor.swift */; };
+		034F00562496094B00682F5C /* studentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034F00552496094B00682F5C /* studentModel.swift */; };
 		037A2DF6243CB17000A6AE28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037A2DF5243CB17000A6AE28 /* AppDelegate.swift */; };
 		037A2DF8243CB17000A6AE28 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037A2DF7243CB17000A6AE28 /* SceneDelegate.swift */; };
 		037A2DFA243CB17000A6AE28 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037A2DF9243CB17000A6AE28 /* ViewController.swift */; };
@@ -57,6 +58,7 @@
 		030D0F912462995A00567758 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = Carthage/Build/iOS/GoogleMaps.framework; sourceTree = "<group>"; };
 		030D0F9524629C5800567758 /* GooglePlaces.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlaces.framework; path = Carthage/Build/iOS/GooglePlaces.framework; sourceTree = "<group>"; };
 		030D0F97246FF15600567758 /* RealmSampleAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSampleAccessor.swift; sourceTree = "<group>"; };
+		034F00552496094B00682F5C /* studentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = studentModel.swift; sourceTree = "<group>"; };
 		037A2DF2243CB17000A6AE28 /* realmAndJsonSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = realmAndJsonSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		037A2DF5243CB17000A6AE28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		037A2DF7243CB17000A6AE28 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				039224882477ED2200246E3D /* ImagePickerViewController.swift */,
 				0392248A247934CB00246E3D /* MessageSendProtocol.swift */,
 				0392248E247C02D700246E3D /* FixSentenseTableViewController.swift */,
+				034F00552496094B00682F5C /* studentModel.swift */,
 			);
 			path = message;
 			sourceTree = "<group>";
@@ -385,6 +388,7 @@
 				037A2DF8243CB17000A6AE28 /* SceneDelegate.swift in Sources */,
 				03E52CE324500C0400C79080 /* SampleObjectAccess.swift in Sources */,
 				0392248F247C02D700246E3D /* FixSentenseTableViewController.swift in Sources */,
+				034F00562496094B00682F5C /* studentModel.swift in Sources */,
 				03F84E9C2451DF99007701FB /* Student.swift in Sources */,
 				0392248B247934CB00246E3D /* MessageSendProtocol.swift in Sources */,
 				039224852472C95200246E3D /* MessageSampleViewController.swift in Sources */,
