@@ -19,8 +19,9 @@ class KeychainSampleTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
+    func testKeychainIfSaveKeychainThenEqualToGetKeychainResult() throws {
         guard let data = "testtest".data(using: .utf8) else {
+            XCTFail()
             return
         }
         let key = "encryptedkey"
