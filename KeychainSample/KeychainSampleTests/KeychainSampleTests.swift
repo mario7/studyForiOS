@@ -20,7 +20,7 @@ class KeychainSampleTests: XCTestCase {
     }
 
     func testExample() throws {
-        guard let data = UUID().uuidString.data(using: .utf8) else {
+        guard let data = "testtest".data(using: .utf8) else {
             return
         }
         let key = "encryptedkey"
