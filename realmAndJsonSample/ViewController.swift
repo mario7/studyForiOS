@@ -33,8 +33,6 @@ class ViewController: UIViewController {
     var touchStart =  CGPoint(x: 0.0, y: 0.0)
     var touchEnd =  CGPoint(x: 0.0, y: 0.0)
     
-    var imageVc =  ImagePickerViewController()
-    
     @IBOutlet weak var startTextField: UITextField!
     @IBOutlet weak var endTextField: UITextField!
     @IBOutlet weak var circleView: UIView!
@@ -248,9 +246,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction func touchedImagePicker(_ button: UIButton) {
-        self.imageVc =  ImagePickerViewController()
-        imageVc.delegate = self
-        self.present(imageVc, animated: true, completion: nil)
+        //self.imageVc =  ImagePickerViewController()
+        //imageVc.delegate = self
+        //self.present(imageVc, animated: true, completion: nil)
         
     }
     
@@ -288,11 +286,3 @@ extension ViewController: UITextFieldDelegate {
     }
 }
 
-
-extension ViewController: MessageSendProtocol {
-    func sendImageMessage(image: UIImage?) {
-
-        self.imageView.image = image
-    }
-
-}

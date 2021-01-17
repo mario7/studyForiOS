@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		030D0F922462995A00567758 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 030D0F902462995A00567758 /* CryptoSwift.framework */; };
 		030D0F98246FF15600567758 /* RealmSampleAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030D0F97246FF15600567758 /* RealmSampleAccessor.swift */; };
-		034F00562496094B00682F5C /* SampleStudentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034F00552496094B00682F5C /* SampleStudentModel.swift */; };
+		0333152E25B3FBFE00486927 /* CryptoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0333152C25B3FBEC00486927 /* CryptoKit.framework */; };
+		0333153125B3FD0A00486927 /* DigestExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0333153025B3FD0A00486927 /* DigestExtension.swift */; };
 		037A2DF6243CB17000A6AE28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037A2DF5243CB17000A6AE28 /* AppDelegate.swift */; };
 		037A2DF8243CB17000A6AE28 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037A2DF7243CB17000A6AE28 /* SceneDelegate.swift */; };
 		037A2DFA243CB17000A6AE28 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037A2DF9243CB17000A6AE28 /* ViewController.swift */; };
@@ -18,14 +18,7 @@
 		037A2E02243CB17000A6AE28 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 037A2E00243CB17000A6AE28 /* LaunchScreen.storyboard */; };
 		037A2E0D243CB17000A6AE28 /* realmAndJsonSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037A2E0C243CB17000A6AE28 /* realmAndJsonSampleTests.swift */; };
 		037A2E18243CB17000A6AE28 /* realmAndJsonSampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037A2E17243CB17000A6AE28 /* realmAndJsonSampleUITests.swift */; };
-		0392247E2472C71E00246E3D /* InputBarAccessoryView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0392247C2472C71E00246E3D /* InputBarAccessoryView.framework */; };
-		0392247F2472C71E00246E3D /* MessageKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0392247D2472C71E00246E3D /* MessageKit.framework */; };
 		039224822472C89C00246E3D /* Message.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 039224802472C89C00246E3D /* Message.storyboard */; };
-		039224852472C95200246E3D /* MessageSampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039224842472C95200246E3D /* MessageSampleViewController.swift */; };
-		039224872472C9B800246E3D /* MockMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039224862472C9B800246E3D /* MockMessage.swift */; };
-		039224892477ED2200246E3D /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039224882477ED2200246E3D /* ImagePickerViewController.swift */; };
-		0392248B247934CB00246E3D /* MessageSendProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0392248A247934CB00246E3D /* MessageSendProtocol.swift */; };
-		0392248F247C02D700246E3D /* FixSentenseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0392248E247C02D700246E3D /* FixSentenseTableViewController.swift */; };
 		03DA3E9A244195FF00C6C4C4 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03DA3E99244195FF00C6C4C4 /* Realm.framework */; };
 		03DA3E9C2441961300C6C4C4 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03DA3E9B2441961300C6C4C4 /* RealmSwift.framework */; };
 		03E52CE1245003F300C79080 /* RealmBaseDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E52CE0245003F300C79080 /* RealmBaseDao.swift */; };
@@ -53,12 +46,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		030D0F8E246295C600567758 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoSwift.framework; path = ../realmAndJsonSample/Carthage/Build/iOS/CryptoSwift.framework; sourceTree = "<group>"; };
-		030D0F902462995A00567758 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoSwift.framework; path = Carthage/Build/iOS/CryptoSwift.framework; sourceTree = "<group>"; };
-		030D0F912462995A00567758 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = Carthage/Build/iOS/GoogleMaps.framework; sourceTree = "<group>"; };
-		030D0F9524629C5800567758 /* GooglePlaces.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlaces.framework; path = Carthage/Build/iOS/GooglePlaces.framework; sourceTree = "<group>"; };
 		030D0F97246FF15600567758 /* RealmSampleAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSampleAccessor.swift; sourceTree = "<group>"; };
-		034F00552496094B00682F5C /* SampleStudentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleStudentModel.swift; sourceTree = "<group>"; };
+		0333152C25B3FBEC00486927 /* CryptoKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoKit.framework; path = System/Library/Frameworks/CryptoKit.framework; sourceTree = SDKROOT; };
+		0333153025B3FD0A00486927 /* DigestExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigestExtension.swift; sourceTree = "<group>"; };
 		037A2DF2243CB17000A6AE28 /* realmAndJsonSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = realmAndJsonSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		037A2DF5243CB17000A6AE28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		037A2DF7243CB17000A6AE28 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,15 +63,7 @@
 		037A2E13243CB17000A6AE28 /* realmAndJsonSampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = realmAndJsonSampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		037A2E17243CB17000A6AE28 /* realmAndJsonSampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = realmAndJsonSampleUITests.swift; sourceTree = "<group>"; };
 		037A2E19243CB17000A6AE28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0392247C2472C71E00246E3D /* InputBarAccessoryView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InputBarAccessoryView.framework; path = Carthage/Build/iOS/InputBarAccessoryView.framework; sourceTree = "<group>"; };
-		0392247D2472C71E00246E3D /* MessageKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageKit.framework; path = Carthage/Build/iOS/MessageKit.framework; sourceTree = "<group>"; };
 		039224812472C89C00246E3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = realmAndJsonSample/Base.lproj/Message.storyboard; sourceTree = "<group>"; };
-		039224842472C95200246E3D /* MessageSampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSampleViewController.swift; sourceTree = "<group>"; };
-		039224862472C9B800246E3D /* MockMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMessage.swift; sourceTree = "<group>"; };
-		039224882477ED2200246E3D /* ImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
-		0392248A247934CB00246E3D /* MessageSendProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSendProtocol.swift; sourceTree = "<group>"; };
-		0392248C247A677200246E3D /* 3294758.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = 3294758.gpx; path = ../../../Downloads/3294758.gpx; sourceTree = "<group>"; };
-		0392248E247C02D700246E3D /* FixSentenseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixSentenseTableViewController.swift; sourceTree = "<group>"; };
 		03DA3E99244195FF00C6C4C4 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		03DA3E9B2441961300C6C4C4 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 		03E52CE0245003F300C79080 /* RealmBaseDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBaseDao.swift; sourceTree = "<group>"; };
@@ -96,9 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0392247E2472C71E00246E3D /* InputBarAccessoryView.framework in Frameworks */,
-				0392247F2472C71E00246E3D /* MessageKit.framework in Frameworks */,
-				030D0F922462995A00567758 /* CryptoSwift.framework in Frameworks */,
+				0333152E25B3FBFE00486927 /* CryptoKit.framework in Frameworks */,
 				03DA3E9C2441961300C6C4C4 /* RealmSwift.framework in Frameworks */,
 				03DA3E9A244195FF00C6C4C4 /* Realm.framework in Frameworks */,
 			);
@@ -121,10 +101,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0333152F25B3FC9800486927 /* crypto */ = {
+			isa = PBXGroup;
+			children = (
+				0333153025B3FD0A00486927 /* DigestExtension.swift */,
+			);
+			path = crypto;
+			sourceTree = "<group>";
+		};
 		037A2DE9243CB17000A6AE28 = {
 			isa = PBXGroup;
 			children = (
-				0392248C247A677200246E3D /* 3294758.gpx */,
 				037A2DF4243CB17000A6AE28 /* realmAndJsonSample */,
 				037A2E0B243CB17000A6AE28 /* realmAndJsonSampleTests */,
 				037A2E16243CB17000A6AE28 /* realmAndJsonSampleUITests */,
@@ -146,6 +133,7 @@
 		037A2DF4243CB17000A6AE28 /* realmAndJsonSample */ = {
 			isa = PBXGroup;
 			children = (
+				0333152F25B3FC9800486927 /* crypto */,
 				039224832472C8E900246E3D /* message */,
 				03F84E9D2451DFBF007701FB /* realm */,
 				037A2DF5243CB17000A6AE28 /* AppDelegate.swift */,
@@ -181,12 +169,6 @@
 		039224832472C8E900246E3D /* message */ = {
 			isa = PBXGroup;
 			children = (
-				039224842472C95200246E3D /* MessageSampleViewController.swift */,
-				039224862472C9B800246E3D /* MockMessage.swift */,
-				039224882477ED2200246E3D /* ImagePickerViewController.swift */,
-				0392248A247934CB00246E3D /* MessageSendProtocol.swift */,
-				0392248E247C02D700246E3D /* FixSentenseTableViewController.swift */,
-				034F00552496094B00682F5C /* SampleStudentModel.swift */,
 			);
 			path = message;
 			sourceTree = "<group>";
@@ -194,12 +176,7 @@
 		03DA3E98244195FF00C6C4C4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0392247C2472C71E00246E3D /* InputBarAccessoryView.framework */,
-				0392247D2472C71E00246E3D /* MessageKit.framework */,
-				030D0F9524629C5800567758 /* GooglePlaces.framework */,
-				030D0F8E246295C600567758 /* CryptoSwift.framework */,
-				030D0F902462995A00567758 /* CryptoSwift.framework */,
-				030D0F912462995A00567758 /* GoogleMaps.framework */,
+				0333152C25B3FBEC00486927 /* CryptoKit.framework */,
 				03DA3E9B2441961300C6C4C4 /* RealmSwift.framework */,
 				03DA3E99244195FF00C6C4C4 /* Realm.framework */,
 			);
@@ -380,18 +357,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				037A2DFA243CB17000A6AE28 /* ViewController.swift in Sources */,
-				039224872472C9B800246E3D /* MockMessage.swift in Sources */,
 				03E52CE1245003F300C79080 /* RealmBaseDao.swift in Sources */,
 				030D0F98246FF15600567758 /* RealmSampleAccessor.swift in Sources */,
 				037A2DF6243CB17000A6AE28 /* AppDelegate.swift in Sources */,
-				039224892477ED2200246E3D /* ImagePickerViewController.swift in Sources */,
 				037A2DF8243CB17000A6AE28 /* SceneDelegate.swift in Sources */,
 				03E52CE324500C0400C79080 /* SampleObjectAccess.swift in Sources */,
-				0392248F247C02D700246E3D /* FixSentenseTableViewController.swift in Sources */,
-				034F00562496094B00682F5C /* SampleStudentModel.swift in Sources */,
+				0333153125B3FD0A00486927 /* DigestExtension.swift in Sources */,
 				03F84E9C2451DF99007701FB /* Student.swift in Sources */,
-				0392248B247934CB00246E3D /* MessageSendProtocol.swift in Sources */,
-				039224852472C95200246E3D /* MessageSampleViewController.swift in Sources */,
 				03F84EA52459B6B3007701FB /* RealmStudentAccess.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -576,12 +548,13 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
+				EXCLUDED_ARCHS = arm64;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = realmAndJsonSample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				JSON_CONFIG = user_configure_dev.json;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -604,12 +577,13 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
+				EXCLUDED_ARCHS = arm64;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = realmAndJsonSample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				JSON_CONFIG = user_configure.json;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -777,13 +751,14 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
+				EXCLUDED_ARCHS = arm64;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = "STAGING=1";
 				INFOPLIST_FILE = realmAndJsonSample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				JSON_CONFIG = user_configure_stg.json;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

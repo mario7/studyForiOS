@@ -1,6 +1,5 @@
 #binary "file:///Users/snowman/Desktop/workSpace/realmAndJsonSample/lib/Crypto/cryptoswift.json" == 1.3.1
-#github "realm/realm-cocoa" == 3.20.0
-
+github "realm/realm-cocoa"
+github "krzyzanowskim/CryptoSwift"
 #binary "file:///Users/snowman/Desktop/workSpace/realmAndJsonSample/lib/Realm/realm.json" == 3.20.0
-
-github "MessageKit/MessageKit" == 3.0.0
+#github "MessageKit/MessageKit" == 3.0.0

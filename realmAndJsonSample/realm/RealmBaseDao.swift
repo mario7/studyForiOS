@@ -8,10 +8,25 @@
 
 import Foundation
 import RealmSwift
+import CryptoKit
 
 class RealmBaseDao <T: RealmSwift.Object> {
-    let realm = try! Realm()
+    //private let realm = try! Realm()
 
+    // Open the encrypted Realm file
+    private var encryptedRealm: Realm {
+        do {
+            if let data = UUID().uuidString.data(using: .utf8) {
+                let config = Realm.Configuration(encryptionKey: SHA256.hash(data: data).data)
+                return try Realm(configuration: config)
+            }
+        } catch let error as NSError {
+            // If the encryption key is wrong, `error` will say that it's an invalid database
+            fatalError("Error opening realm: \(error)")
+        }
+        return try! Realm()
+    }
+    
     init() {
 //        // Generate a random encryption key
 //        var key = Data(count: 64)
@@ -38,7 +53,7 @@ class RealmBaseDao <T: RealmSwift.Object> {
             return nil
         }
 
-        if let last = realm.objects(T.self).last,
+        if let last = encryptedRealm.objects(T.self).last,
             let lastId = last[key] as? Int {
             return lastId + 1
         } else {
@@ -50,7 +65,7 @@ class RealmBaseDao <T: RealmSwift.Object> {
      * 全件取得
      */
     func findAll() -> Results<T> {
-        return realm.objects(T.self)
+        return encryptedRealm.objects(T.self)
     }
 
     /**
@@ -64,7 +79,7 @@ class RealmBaseDao <T: RealmSwift.Object> {
      * 指定キーのレコードを取得
      */
     func findFirst(key: AnyObject) -> T? {
-        return realm.object(ofType: T.self, forPrimaryKey: key)
+        return encryptedRealm.object(ofType: T.self, forPrimaryKey: key)
     }
 
     /**
@@ -75,14 +90,14 @@ class RealmBaseDao <T: RealmSwift.Object> {
     }
     
     func filter(query: String) -> Results<T> {
-        return realm.objects(T.self).filter(query)
+        return encryptedRealm.objects(T.self).filter(query)
     }
 
     /**
      * レコードの追加
      */
     func add(obj :T) throws {
-        
+        let realm = encryptedRealm
         try realm.write {
             //realm.add(obj, update: .modified)
             realm.add(obj)
@@ -94,21 +109,21 @@ class RealmBaseDao <T: RealmSwift.Object> {
      * レコードの追加／更新
      */
     func addOrUpdate(obj :T) throws {
-        
+        let realm = encryptedRealm
         try realm.write {
             realm.add(obj, update: .modified)
         }
     }
 
     func updateOnly(block: @escaping () -> Void ) throws {
-        try realm.write(block)
+        try encryptedRealm.write(block)
     }
     /**
     * T: RealmSwift.Object で primaryKey()が実装されている時のみ有効
     */
     func update( block:@escaping () -> Void)  {
         do {
-            try realm.write (block)
+            try encryptedRealm.write (block)
             
         } catch let error as NSError {
             print(error.description)
@@ -121,6 +136,7 @@ class RealmBaseDao <T: RealmSwift.Object> {
      */
     func delete(obj: T) {
         do {
+            let realm = encryptedRealm
             try realm.write {
                 realm.delete(obj)
             }
@@ -133,6 +149,7 @@ class RealmBaseDao <T: RealmSwift.Object> {
      * レコード全削除
      */
     func deleteAll() {
+        let realm = encryptedRealm
         let objs = realm.objects(T.self)
         do {
             try realm.write {
@@ -144,6 +161,7 @@ class RealmBaseDao <T: RealmSwift.Object> {
     }
     
     func deleteWithQuery(query: String) {
+        let realm = encryptedRealm
         let objs = realm.objects(T.self).filter(query)
         do {
             try realm.write {
@@ -160,6 +178,6 @@ class RealmBaseDao <T: RealmSwift.Object> {
     }
     
     func getRealm() -> Realm {
-        return realm
+        return encryptedRealm
     }
 }
