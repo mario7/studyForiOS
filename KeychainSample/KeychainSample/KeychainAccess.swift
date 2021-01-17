@@ -19,7 +19,10 @@ class KeychainAccess {
         let dic: [String: Any] = [kSecClass as String: kSecClassGenericPassword,
                                   kSecAttrGeneric as String: key,           // 自由項目（グループ）
                                   kSecAttrAccount as String: "snowman",     // アカウント（ログインIDなど）
-                                  kSecValueData as String: data]            // 保存情報
+                                  kSecValueData as String: data,            // 保存情報
+                                  //ロック状態（スリープ時）で利用可能けするため、
+                                  // https://qiita.com/miyamori/items/2dc43a2bc7e3dea35cd3
+                                  kSecAttrAccessible as String: kSecAttrAccessibleAfterFirstUnlock]
 
         var itemAddStatus: OSStatus?
         // 保存データが存在するかの確認
