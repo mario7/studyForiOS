@@ -32,7 +32,7 @@ class KeychainAccess {
         case errSecItemNotFound:
             itemAddStatus = SecItemAdd(dic as CFDictionary, nil)
         // 更新
-        case errSecItemNotFound:
+        case errSecSuccess:
             itemAddStatus = SecItemUpdate(dic as CFDictionary,
                                           [kSecValueData as String: data] as CFDictionary)
         default:

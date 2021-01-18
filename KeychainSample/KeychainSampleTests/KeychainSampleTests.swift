@@ -30,6 +30,4 @@ class KeychainSampleTests: XCTestCase {
         let result = KeychainAccess.getKeyChain(key: key)
         XCTAssertTrue(value == result)
     }
-
-
 }
