@@ -8,22 +8,22 @@
 
 import Foundation
 import RealmSwift
-import CryptoKit
+//import CryptoKit
 
 class RealmBaseDao <T: RealmSwift.Object> {
     //private let realm = try! Realm()
 
     // Open the encrypted Realm file
     private var encryptedRealm: Realm {
-        do {
-            if let data = UUID().uuidString.data(using: .utf8) {
-                let config = Realm.Configuration(encryptionKey: SHA256.hash(data: data).data)
-                return try Realm(configuration: config)
-            }
-        } catch let error as NSError {
-            // If the encryption key is wrong, `error` will say that it's an invalid database
-            fatalError("Error opening realm: \(error)")
-        }
+//        do {
+//            if let data = UUID().uuidString.data(using: .utf8) {
+//                let config = Realm.Configuration(encryptionKey: SHA256.hash(data: data).data)
+//                return try Realm(configuration: config)
+//            }
+//        } catch let error as NSError {
+//            // If the encryption key is wrong, `error` will say that it's an invalid database
+//            fatalError("Error opening realm: \(error)")
+//        }
         return try! Realm()
     }
     
