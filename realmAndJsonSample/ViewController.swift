@@ -267,6 +267,10 @@ class ViewController: UIViewController {
     
         return String(result)
     }
+    
+    @IBAction func nfcScanAction (_ button: UIButton) {
+        NFCReader.shard.nfcScan()
+    }
 
 }
 
