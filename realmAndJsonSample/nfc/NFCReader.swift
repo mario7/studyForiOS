@@ -33,10 +33,12 @@ class NFCReader: NSObject {
 }
 
 extension NFCReader: NFCTagReaderSessionDelegate {
+    //読み取り状態になったとき
     func tagReaderSessionDidBecomeActive(_ session: NFCTagReaderSession) {
         debugPrint(#function)
     }
     
+    //読み取りが成功したとき
     func tagReaderSession(_ session: NFCTagReaderSession,
                           didDetect tags: [NFCTag]) {
         debugPrint(#function)
@@ -45,18 +47,19 @@ extension NFCReader: NFCTagReaderSessionDelegate {
         session.connect(to: selectedTag) { [weak self] error in
             guard error == nil else { return }
             
-            if case let NFCTag.feliCa(tag) = selectedTag {
+            switch selectedTag {
+            case let NFCTag.feliCa(tag):
                 self?.felicaTagSelected(session: session, tag: tag)
-            } else if case let NFCTag.miFare(tag) = selectedTag {
+            case let NFCTag.miFare(tag):
                 self?.miFareTagSelected(session: session, tag: tag)
-            } else {
+            default:
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 500) {
                     session.restartPolling()
                 }
             }
         }
     }
-
+    //読み取りが完了したとき(理由)
     func tagReaderSession(_ session: NFCTagReaderSession,
                           didInvalidateWithError error: Error) {
         debugPrint(error.localizedDescription)
