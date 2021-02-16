@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		030D0F98246FF15600567758 /* RealmSampleAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030D0F97246FF15600567758 /* RealmSampleAccessor.swift */; };
-		0333152E25B3FBFE00486927 /* CryptoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0333152C25B3FBEC00486927 /* CryptoKit.framework */; };
-		0333153125B3FD0A00486927 /* DigestExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0333153025B3FD0A00486927 /* DigestExtension.swift */; };
 		037A2DF6243CB17000A6AE28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037A2DF5243CB17000A6AE28 /* AppDelegate.swift */; };
 		037A2DF8243CB17000A6AE28 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037A2DF7243CB17000A6AE28 /* SceneDelegate.swift */; };
 		037A2DFA243CB17000A6AE28 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037A2DF9243CB17000A6AE28 /* ViewController.swift */; };
@@ -48,8 +46,6 @@
 
 /* Begin PBXFileReference section */
 		030D0F97246FF15600567758 /* RealmSampleAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSampleAccessor.swift; sourceTree = "<group>"; };
-		0333152C25B3FBEC00486927 /* CryptoKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoKit.framework; path = System/Library/Frameworks/CryptoKit.framework; sourceTree = SDKROOT; };
-		0333153025B3FD0A00486927 /* DigestExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigestExtension.swift; sourceTree = "<group>"; };
 		037A2DF2243CB17000A6AE28 /* realmAndJsonSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = realmAndJsonSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		037A2DF5243CB17000A6AE28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		037A2DF7243CB17000A6AE28 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,7 +76,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0333152E25B3FBFE00486927 /* CryptoKit.framework in Frameworks */,
 				03DA3E9C2441961300C6C4C4 /* RealmSwift.framework in Frameworks */,
 				03DA3E9A244195FF00C6C4C4 /* Realm.framework in Frameworks */,
 			);
@@ -106,7 +101,6 @@
 		0333152F25B3FC9800486927 /* crypto */ = {
 			isa = PBXGroup;
 			children = (
-				0333153025B3FD0A00486927 /* DigestExtension.swift */,
 				03DB986F25DB57500020BD62 /* DataExtension.swift */,
 			);
 			path = crypto;
@@ -179,7 +173,6 @@
 		03DA3E98244195FF00C6C4C4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0333152C25B3FBEC00486927 /* CryptoKit.framework */,
 				03DA3E9B2441961300C6C4C4 /* RealmSwift.framework */,
 				03DA3E99244195FF00C6C4C4 /* Realm.framework */,
 			);
@@ -263,7 +256,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1140;
-				LastUpgradeCheck = 1140;
+				LastUpgradeCheck = 1240;
 				ORGANIZATIONNAME = snowman;
 				TargetAttributes = {
 					037A2DF1243CB17000A6AE28 = {
@@ -339,9 +332,6 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/CryptoSwift.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/MessageKit.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/InputBarAccessoryView.framework",
 			);
 			name = "Realm Run Script";
 			outputFileListPaths = (
@@ -365,7 +355,6 @@
 				037A2DF6243CB17000A6AE28 /* AppDelegate.swift in Sources */,
 				037A2DF8243CB17000A6AE28 /* SceneDelegate.swift in Sources */,
 				03E52CE324500C0400C79080 /* SampleObjectAccess.swift in Sources */,
-				0333153125B3FD0A00486927 /* DigestExtension.swift in Sources */,
 				03F84E9C2451DF99007701FB /* Student.swift in Sources */,
 				03F84EA52459B6B3007701FB /* RealmStudentAccess.swift in Sources */,
 				03DB987025DB57500020BD62 /* DataExtension.swift in Sources */,
@@ -457,6 +446,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -517,6 +507,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -610,7 +601,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = realmAndJsonSampleTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -634,7 +625,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = realmAndJsonSampleTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -720,6 +711,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -787,7 +779,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = realmAndJsonSampleTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
