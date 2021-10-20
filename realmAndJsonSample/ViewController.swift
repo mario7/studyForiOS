@@ -9,6 +9,12 @@
 import UIKit
 import RealmSwift
 
+enum EvaluateError: Error {
+    case isEmpty
+    case isNotValidEmailAddress
+    case isNotValidEmailLength
+}
+
 extension Double {
     
     //degree to radian
@@ -268,6 +274,36 @@ class ViewController: UIViewController {
         return String(result)
     }
 
+}
+
+extension ViewController {
+    
+    func checkInputValidation(string: String) -> Bool {
+        if string.isEmpty == true {
+            throw EvaluateError.isEmpty
+        }
+        
+//        if isValid(input: string,
+//                   regEx: emailRegEx,
+//                   predicateFormat: "SELF MATCHES[c] %@") == false {
+//            throw EvaluateError.isNotValidEmailAddress
+//        }
+        
+        if maxLength(emailAddress: string) == false {
+            throw EvaluateError.isNotValidEmailLength
+        }
+    }
+    
+    private func maxLength(emailAddress: String) -> Bool {
+        // 64 chars before domain and total 80. '@' key is part of the domain.
+        guard emailAddress.count <= 80 else {
+            return false
+        }
+
+        guard let domainKey = emailAddress.firstIndex(of: "@") else { return false }
+
+        return emailAddress[..<domainKey].count <= 64
+    }
 }
 
 extension ViewController: UITextFieldDelegate {
